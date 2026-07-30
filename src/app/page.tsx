@@ -1,16 +1,24 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import { PublicLayout } from '@/components/common/PublicLayout';
 import { Button } from '@/components/ui/Button';
-import { Dumbbell, ArrowRight, ShieldCheck, Zap, Compass, RefreshCw } from 'lucide-react';
+import { useGearCatalog } from '@/hooks/useGear';
+import { GearGrid } from '@/components/modules/gear/GearGrid';
+import { GearSkeleton } from '@/components/modules/gear/GearSkeleton';
+import { Dumbbell, ArrowRight, ShieldCheck, Zap, Compass, RefreshCw, Flame } from 'lucide-react';
 
 export default function Home() {
+  const { items, isLoading } = useGearCatalog({ limit: 6, sortBy: 'createdAt', sortOrder: 'desc' });
+
   return (
     <PublicLayout>
       <div className="relative min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center p-6 lg:p-12 overflow-hidden bg-slate-950 text-slate-100">
         {/* Dynamic Background Glow Elements */}
         <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full bg-emerald-500/10 blur-[150px] pointer-events-none" />
 
+        {/* Hero Section */}
         <div className="max-w-5xl mx-auto text-center flex flex-col items-center gap-8 z-10 py-12">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 text-xs sm:text-sm font-semibold backdrop-blur-md">
@@ -78,8 +86,34 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Featured Gear Section */}
+        <div className="w-full max-w-7xl mx-auto py-16 border-t border-slate-800/80 z-10 flex flex-col gap-8">
+          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-400 mb-1">
+                <Flame className="w-4 h-4 text-emerald-400" /> Featured Equipment
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-100 tracking-tight">
+                Latest Additions Available for Rent
+              </h2>
+            </div>
+
+            <Link href="/gear">
+              <Button variant="ghost" size="sm" rightIcon={<ArrowRight className="w-4 h-4" />}>
+                View All Gear
+              </Button>
+            </Link>
+          </div>
+
+          {/* Grid or Skeleton */}
+          {isLoading ? (
+            <GearSkeleton count={6} />
+          ) : (
+            <GearGrid items={items} />
+          )}
+        </div>
       </div>
     </PublicLayout>
   );
 }
-
