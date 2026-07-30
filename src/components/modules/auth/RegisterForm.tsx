@@ -114,11 +114,30 @@ export function RegisterForm() {
       }
     } catch (err: any) {
       console.error('Registration submit error:', err);
-      setApiError(
-        err?.message || err?.data?.message || 'Registration failed. Please check your details and try again.'
-      );
+      let errorMessage = 'Registration failed. Please check your details and try again.';
+
+      const rawError = err?.data?.error || err?.message;
+      if (rawError) {
+        if (typeof rawError === 'string' && rawError.startsWith('[')) {
+          try {
+            const parsed = JSON.parse(rawError);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              errorMessage = parsed.map((item: any) => item.message || item.field).join('. ');
+            }
+          } catch {
+            errorMessage = rawError;
+          }
+        } else if (typeof rawError === 'string') {
+          errorMessage = rawError;
+        }
+      } else if (err?.data?.message) {
+        errorMessage = err.data.message;
+      }
+
+      setApiError(errorMessage);
     }
   };
+
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full">
