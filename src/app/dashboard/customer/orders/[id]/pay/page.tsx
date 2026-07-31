@@ -3,6 +3,7 @@
 import React, { useState, use } from 'react';
 import Link from 'next/link';
 import { usePayment } from '@/hooks/usePayment';
+import { useAuth } from '@/hooks/useAuth';
 import { PaymentMethod } from '@/types/payment';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
@@ -13,6 +14,7 @@ import { CreditCard, ShieldCheck, ArrowRight, ArrowLeft, Lock, CheckCircle2 } fr
 export default function PaymentCheckoutPage({ params }: { params: Promise<{ id: string }> }) {
   const { id: orderId } = use(params);
   const { initiatePayment, isInitiatingPayment } = usePayment();
+  const { user } = useAuth();
 
   const [paymentError, setPaymentError] = useState<string | null>(null);
 
@@ -28,9 +30,12 @@ export default function PaymentCheckoutPage({ params }: { params: Promise<{ id: 
         orderId,
         method: PaymentMethod.STRIPE,
         currency: 'USD',
+        customerEmail: user?.email,
+        customerName: user?.name,
         successUrl,
         cancelUrl,
       });
+
 
       const checkoutUrl =
         (response?.data as any)?.paymentUrl ||

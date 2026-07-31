@@ -38,18 +38,19 @@ export default function PaymentCancelPage() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row items-center gap-3 w-full mt-2">
-                <Link href="/dashboard/customer" className="w-full">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full mt-2">
+                <Link href="/dashboard/customer" className="w-full sm:flex-1">
                   <Button variant="primary" size="lg" fullWidth leftIcon={<ShoppingBag className="w-5 h-5" />}>
-                    Return to Customer Dashboard
+                    Go to Dashboard
                   </Button>
                 </Link>
-                <Link href="/gear" className="w-full">
+                <Link href="/gear" className="w-full sm:flex-1">
                   <Button variant="outline" size="lg" fullWidth leftIcon={<Compass className="w-5 h-5" />}>
-                    Browse Equipment Catalog
+                    Browse Catalog
                   </Button>
                 </Link>
               </div>
+
             </CardContent>
           </Card>
         </div>

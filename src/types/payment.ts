@@ -13,10 +13,13 @@ export interface CreatePaymentPayload {
   orderId: string;
   method: PaymentMethod | string;
   currency?: string;
+  customerEmail?: string;
+  customerName?: string;
   successUrl?: string;
   cancelUrl?: string;
   failUrl?: string;
 }
+
 
 export interface PaymentResponseData {
   paymentId?: string;
