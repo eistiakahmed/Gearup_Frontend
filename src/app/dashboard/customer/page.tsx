@@ -20,7 +20,9 @@ import {
   ArrowRight,
   ShieldCheck,
   Package,
+  PackageCheck,
 } from 'lucide-react';
+
 
 export default function CustomerDashboardPage() {
   const { orders, isLoading: isOrdersLoading, mutate: mutateOrders } = useCustomerRentals();
@@ -216,13 +218,13 @@ export default function CustomerDashboardPage() {
                               ${Number(order.totalAmount || 0).toFixed(2)}
                             </td>
                             <td className="p-4">
-                              <Badge variant={isOrderPaid ? 'paid' : getOrderStatusBadgeVariant(order.status)}>
-
-                                {isOrderPaid ? 'PAID' : order.status}
+                              <Badge variant={getOrderStatusBadgeVariant(order.status)}>
+                                {order.status}
                               </Badge>
                             </td>
                             <td className="p-4 text-right">
-                              {order.status === RentalOrderStatus.PLACED && !isOrderPaid && (
+                              {/* 1. PLACED (Unpaid) -> Pay Now */}
+                              {order.status === RentalOrderStatus.PLACED && (
                                 <Link href={`/dashboard/customer/orders/${order.id}/pay`}>
                                   <Button variant="primary" size="sm" rightIcon={<CreditCard className="w-3.5 h-3.5" />}>
                                     Pay Now
@@ -230,21 +232,34 @@ export default function CustomerDashboardPage() {
                                 </Link>
                               )}
 
+                              {/* 2. CONFIRMED or PAID -> Awaiting Pickup */}
                               {(order.status === RentalOrderStatus.CONFIRMED ||
-                                order.status === RentalOrderStatus.PAID ||
-                                isOrderPaid) &&
-                                order.status !== RentalOrderStatus.RETURNED && (
-                                  <Button
-                                    variant="secondary"
-                                    size="sm"
-                                    disabled
-                                    leftIcon={<Clock className="w-3.5 h-3.5 text-amber-400 animate-pulse" />}
-                                    className="bg-amber-500/10 text-amber-400 border border-amber-500/30 font-medium opacity-100 disabled:opacity-100 cursor-default"
-                                  >
-                                    Waiting for Approval
-                                  </Button>
-                                )}
+                                order.status === RentalOrderStatus.PAID) && (
+                                <Button
+                                  variant="secondary"
+                                  size="sm"
+                                  disabled
+                                  leftIcon={<Clock className="w-3.5 h-3.5 text-amber-400 animate-pulse" />}
+                                  className="bg-amber-500/10 text-amber-400 border border-amber-500/30 font-medium opacity-100 disabled:opacity-100 cursor-default"
+                                >
+                                  Awaiting Pickup
+                                </Button>
+                              )}
 
+                              {/* 3. PICKED_UP -> Active Rental */}
+                              {order.status === RentalOrderStatus.PICKED_UP && (
+                                <Button
+                                  variant="secondary"
+                                  size="sm"
+                                  disabled
+                                  leftIcon={<PackageCheck className="w-3.5 h-3.5 text-emerald-400" />}
+                                  className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-medium opacity-100 disabled:opacity-100 cursor-default"
+                                >
+                                  Active Rental
+                                </Button>
+                              )}
+
+                              {/* 4. RETURNED -> Leave Review */}
                               {order.status === RentalOrderStatus.RETURNED && (
                                 <Button
                                   variant="outline"
@@ -256,14 +271,12 @@ export default function CustomerDashboardPage() {
                                 </Button>
                               )}
 
-                              {order.status !== RentalOrderStatus.PLACED &&
-                                order.status !== RentalOrderStatus.CONFIRMED &&
-                                order.status !== RentalOrderStatus.PAID &&
-                                !isOrderPaid &&
-                                order.status !== RentalOrderStatus.RETURNED && (
-                                  <span className="text-xs text-slate-500 font-mono">-</span>
-                                )}
+                              {/* 5. CANCELLED -> - */}
+                              {order.status === RentalOrderStatus.CANCELLED && (
+                                <span className="text-xs text-slate-500 font-mono">-</span>
+                              )}
                             </td>
+
 
 
 

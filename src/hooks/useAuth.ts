@@ -2,7 +2,9 @@
 
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
+import { useRouter } from 'next/navigation';
 import {
+
   registerUser,
   loginUser,
   logoutUser,
@@ -19,6 +21,8 @@ import {
  * Custom authentication hook with SWR integration
  */
 export function useAuth() {
+  const router = useRouter();
+
   // Client-side fetch current user profile via SWR
   const {
     data: currentUserResponse,
@@ -53,15 +57,16 @@ export function useAuth() {
     }
   );
 
-  // Logout action
+  // Logout action — clears state instantly then calls API in background
   const logout = async () => {
-    try {
-      await logoutUser();
-      await mutateUser(undefined, false);
-    } catch (err) {
-      console.error('Logout error:', err);
-    }
+    // 1. Immediately clear user state → UI updates instantly
+    await mutateUser(undefined, false);
+    // 2. Redirect to login right away (no waiting for API)
+    router.push('/login');
+    // 3. Call API in background to clear server cookie
+    logoutUser().catch((err) => console.error('Logout API error:', err));
   };
+
 
   return {
     user,
