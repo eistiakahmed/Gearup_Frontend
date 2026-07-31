@@ -1,7 +1,5 @@
-'use client';
-
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/hooks/useAuth';
 import { LoginRequestPayload, UserRole } from '@/types/auth';
@@ -12,6 +10,8 @@ import { Mail, Lock, ArrowRight, LogIn } from 'lucide-react';
 
 export function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectParam = searchParams.get('redirect');
   const { login, isLoggingIn } = useAuth();
 
   const [formData, setFormData] = useState<LoginRequestPayload>({
@@ -73,15 +73,20 @@ export function LoginForm() {
         const loggedUser = response.data?.user;
         const role = loggedUser?.role;
 
-        setTimeout(() => {
+        let targetPath = redirectParam;
+        if (!targetPath) {
           if (role === UserRole.PROVIDER) {
-            router.push('/dashboard/provider');
+            targetPath = '/dashboard/provider';
           } else if (role === UserRole.ADMIN) {
-            router.push('/dashboard/admin');
+            targetPath = '/dashboard/admin';
           } else {
-            router.push('/dashboard/customer');
+            targetPath = '/dashboard/customer';
           }
-        }, 1000);
+        }
+
+        setTimeout(() => {
+          window.location.href = targetPath;
+        }, 500);
       }
     } catch (err: any) {
       console.error('Login submit error:', err);

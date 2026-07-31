@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
 import { LoginForm } from '@/components/modules/auth/LoginForm';
 import { Card, CardContent } from '@/components/ui/Card';
@@ -25,7 +25,7 @@ export default function LoginPage() {
             </div>
             <div>
               <span className="text-2xl font-black tracking-tight text-slate-900 flex items-center gap-1">
-                GearUp <span className="text-emerald-600 font-extrabold">🏋️</span>
+                GearUp
               </span>
               <p className="text-xs text-slate-500 font-medium">Rent Sports & Outdoor Gear</p>
             </div>
@@ -78,7 +78,9 @@ export default function LoginPage() {
                 </p>
               </div>
 
-              <LoginForm />
+              <Suspense fallback={<div className="p-8 text-center text-slate-500 animate-pulse">Loading login portal...</div>}>
+                <LoginForm />
+              </Suspense>
             </CardContent>
           </Card>
         </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Metadata from 'next';
 import Link from 'next/link';
 import { RegisterForm } from '@/components/modules/auth/RegisterForm';
@@ -89,7 +89,9 @@ export default function RegisterPage() {
                 </p>
               </div>
 
-              <RegisterForm />
+              <Suspense fallback={<div className="p-8 text-center text-slate-500 animate-pulse">Loading registration portal...</div>}>
+                <RegisterForm />
+              </Suspense>
             </CardContent>
           </Card>
         </div>
