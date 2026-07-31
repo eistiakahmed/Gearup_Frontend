@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { PublicLayout } from '@/components/common/PublicLayout';
 import { useAdminUsers, useUpdateUserStatus } from '@/hooks/useAdmin';
+import { useAuth } from '@/hooks/useAuth';
 import { AdminUserFilters } from '@/types/admin';
 import { UserRole } from '@/types/auth';
 import { Badge } from '@/components/ui/Badge';
@@ -24,6 +25,7 @@ import {
 } from 'lucide-react';
 
 export default function UserManagementPage() {
+  const { user: currentUser } = useAuth();
   const [filters, setFilters] = useState<AdminUserFilters>({});
 
   const { users, isLoading, mutate: mutateUsers } = useAdminUsers(filters);
@@ -183,14 +185,18 @@ export default function UserManagementPage() {
                           )}
                         </td>
                         <td className="p-4 text-right">
-                          <Button
-                            variant={u.isActive !== false ? 'secondary' : 'primary'}
-                            size="sm"
-                            isLoading={isUpdatingUserStatus}
-                            onClick={() => handleToggleUserStatus(u.id, u.isActive !== false)}
-                          >
-                            {u.isActive !== false ? 'Suspend User' : 'Activate Account'}
-                          </Button>
+                          {currentUser?.id === u.id ? (
+                            <span className="text-xs text-slate-500 italic">Cannot suspend yourself</span>
+                          ) : (
+                            <Button
+                              variant={u.isActive !== false ? 'secondary' : 'primary'}
+                              size="sm"
+                              isLoading={isUpdatingUserStatus}
+                              onClick={() => handleToggleUserStatus(u.id, u.isActive !== false)}
+                            >
+                              {u.isActive !== false ? 'Suspend User' : 'Activate Account'}
+                            </Button>
+                          )}
                         </td>
                       </tr>
                     ))}
