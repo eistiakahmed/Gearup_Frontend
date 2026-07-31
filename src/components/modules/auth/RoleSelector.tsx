@@ -28,13 +28,6 @@ export const ROLE_OPTIONS: RoleOption[] = [
     icon: <Store className="w-6 h-6" />,
     badge: 'Rent Out',
   },
-  {
-    role: UserRole.ADMIN,
-    title: 'Platform Admin',
-    description: 'Manage platform users, inspect listings, and moderate rentals.',
-    icon: <ShieldCheck className="w-6 h-6" />,
-    badge: 'Moderate',
-  },
 ];
 
 export interface RoleSelectorProps {
@@ -48,7 +41,7 @@ export function RoleSelector({ selectedRole, onSelectRole }: RoleSelectorProps) 
       <label className="text-xs font-semibold uppercase tracking-wider text-slate-700">
         Account Type <span className="text-rose-500">*</span>
       </label>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {ROLE_OPTIONS.map((opt) => {
           const isSelected = selectedRole === opt.role;
           return (
