@@ -173,14 +173,14 @@ export default function ProviderOrdersPage() {
                               </Button>
                             )}
 
-                            {order.status === RentalOrderStatus.PAID && (
+                            {(order.status === RentalOrderStatus.CONFIRMED || order.status === RentalOrderStatus.PAID) && (
                               <Button
                                 variant="primary"
                                 size="sm"
                                 isLoading={isUpdatingStatus}
                                 onClick={() => handleUpdateStatus(order.id, RentalOrderStatus.PICKED_UP)}
                                 leftIcon={<PackageCheck className="w-3.5 h-3.5" />}
-                                className="bg-emerald-600 hover:bg-emerald-500 text-white"
+                                className="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold"
                               >
                                 Mark Picked Up
                               </Button>
@@ -198,12 +198,19 @@ export default function ProviderOrdersPage() {
                               </Button>
                             )}
 
-                            {order.status !== RentalOrderStatus.PLACED &&
-                              order.status !== RentalOrderStatus.PAID &&
-                              order.status !== RentalOrderStatus.PICKED_UP && (
-                                <span className="text-xs text-slate-500 font-mono">-</span>
-                              )}
+                            {order.status === RentalOrderStatus.RETURNED && (
+                              <span className="text-xs font-semibold text-emerald-400 inline-flex items-center gap-1">
+                                <CheckCircle2 className="w-3.5 h-3.5" /> Returned & Completed
+                              </span>
+                            )}
+
+                            {order.status === RentalOrderStatus.CANCELLED && (
+                              <span className="text-xs font-semibold text-rose-400">
+                                Order Cancelled
+                              </span>
+                            )}
                           </td>
+
                         </tr>
                       );
                     })}

@@ -33,12 +33,15 @@ export default function ProviderDashboardPage() {
   // Metrics
   const totalListedGear = gearItems.length;
   const pendingOrdersCount = orders.filter((o) => o.status === 'PLACED').length;
+  const incomingOrdersCount = orders.filter((o) => o.status !== 'CANCELLED').length;
   const activeRentalsCount = orders.filter(
     (o) => o.status === 'PAID' || o.status === 'PICKED_UP'
   ).length;
+
   const totalRevenue = orders
     .filter((o) => o.status !== 'CANCELLED')
     .reduce((acc, o) => acc + (Number(o.totalAmount) || 0), 0);
+
 
 
   const handleToggleStatus = async (id: string, currentAvailable: boolean) => {
@@ -88,7 +91,8 @@ export default function ProviderDashboardPage() {
             <div className="flex items-center gap-3">
               <Link href="/dashboard/provider/orders">
                 <Button variant="outline" size="md" leftIcon={<ShoppingBag className="w-4 h-4" />}>
-                  Incoming Orders ({pendingOrdersCount})
+                  Incoming Orders ({incomingOrdersCount})
+
                 </Button>
               </Link>
               <Link href="/dashboard/provider/gear/new">
