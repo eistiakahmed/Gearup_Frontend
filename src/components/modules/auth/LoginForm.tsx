@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/hooks/useAuth';
 import { LoginRequestPayload, UserRole } from '@/types/auth';
@@ -10,8 +10,6 @@ import { Mail, Lock, ArrowRight, LogIn } from 'lucide-react';
 
 export function LoginForm() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const redirectParam = searchParams.get('redirect');
   const { login, isLoggingIn } = useAuth();
 
   const [formData, setFormData] = useState<LoginRequestPayload>({
@@ -72,6 +70,12 @@ export function LoginForm() {
 
         const loggedUser = response.data?.user;
         const role = loggedUser?.role;
+
+        let redirectParam: string | null = null;
+        if (typeof window !== 'undefined') {
+          const params = new URLSearchParams(window.location.search);
+          redirectParam = params.get('redirect');
+        }
 
         let targetPath = redirectParam;
         if (!targetPath) {
