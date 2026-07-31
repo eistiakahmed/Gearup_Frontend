@@ -245,12 +245,12 @@ export function Navbar() {
               </>
             ) : (
               <div className="grid grid-cols-2 gap-2">
-                <Link href="/auth/login" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link href="/login" onClick={() => setIsMobileMenuOpen(false)}>
                   <Button variant="outline" size="sm" fullWidth>
                     Sign In
                   </Button>
                 </Link>
-                <Link href="/auth/register" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link href="/register" onClick={() => setIsMobileMenuOpen(false)}>
                   <Button variant="primary" size="sm" fullWidth>
                     Register
                   </Button>

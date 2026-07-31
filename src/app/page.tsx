@@ -46,7 +46,7 @@ export default function Home() {
                 Browse Equipment Catalog
               </Button>
             </Link>
-            <Link href="/auth/register" className="w-full sm:w-auto">
+            <Link href="/register" className="w-full sm:w-auto">
               <Button variant="outline" size="lg" fullWidth leftIcon={<Dumbbell className="w-5 h-5" />}>
                 Become a Provider
               </Button>

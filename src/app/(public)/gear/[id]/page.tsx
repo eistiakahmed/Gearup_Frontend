@@ -86,7 +86,7 @@ export default function GearDetailsPage({ params }: { params: Promise<{ id: stri
     setOrderSuccess(null);
 
     if (!isAuthenticated) {
-      router.push(`/auth/login?redirect=/gear/${gear.id}`);
+      router.push(`/login?redirect=/gear/${gear.id}`);
       return;
     }
 

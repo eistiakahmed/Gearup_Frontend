@@ -47,12 +47,12 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/auth/register" className="hover:text-emerald-700 transition-colors text-slate-600">
+                <Link href="/register" className="hover:text-emerald-700 transition-colors text-slate-600">
                   Create Account
                 </Link>
               </li>
               <li>
-                <Link href="/auth/login" className="hover:text-emerald-700 transition-colors text-slate-600">
+                <Link href="/login" className="hover:text-emerald-700 transition-colors text-slate-600">
                   Sign In
                 </Link>
               </li>
