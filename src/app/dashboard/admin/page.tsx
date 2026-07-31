@@ -21,10 +21,15 @@ import {
 export default function AdminDashboardPage() {
   const { stats, isLoading } = useAdminStats();
 
-  const totalUsers = stats?.totalUsers || 0;
-  const totalGear = stats?.totalGear || 0;
-  const totalRentals = stats?.totalRentals || 0;
-  const totalRevenue = stats?.totalRevenue || 0;
+  const totalUsers = stats?.users?.total || 0;
+  const totalGear = stats?.gear?.total || 0;
+  const totalRentals = stats?.orders?.total || 0;
+  const totalRevenue = stats?.revenue?.total || 0;
+  const activeUsers = stats?.users?.active || 0;
+  const totalProviders = stats?.users?.providers || 0;
+  const totalCustomers = stats?.users?.customers || 0;
+  const completedPayments = stats?.payments?.completed || 0;
+
 
   return (
     <PublicLayout>
@@ -68,6 +73,9 @@ export default function AdminDashboardPage() {
               <p className="text-3xl font-black text-slate-100 mt-2">
                 {isLoading ? '...' : totalUsers}
               </p>
+              <p className="text-xs text-slate-500 mt-1">
+                {totalProviders} providers · {totalCustomers} customers · {activeUsers} active
+              </p>
             </Card>
 
             <Card className="p-5 border-slate-800/80 bg-slate-900/70">
@@ -81,6 +89,9 @@ export default function AdminDashboardPage() {
               </div>
               <p className="text-3xl font-black text-slate-100 mt-2">
                 {isLoading ? '...' : totalGear}
+              </p>
+              <p className="text-xs text-slate-500 mt-1">
+                {stats?.gear?.available || 0} available · {stats?.gear?.unavailable || 0} unavailable
               </p>
             </Card>
 
@@ -96,6 +107,9 @@ export default function AdminDashboardPage() {
               <p className="text-3xl font-black text-slate-100 mt-2">
                 {isLoading ? '...' : totalRentals}
               </p>
+              <p className="text-xs text-slate-500 mt-1">
+                {completedPayments} payments completed
+              </p>
             </Card>
 
             <Card className="p-5 border-slate-800/80 bg-slate-900/70">
@@ -110,9 +124,12 @@ export default function AdminDashboardPage() {
               <p className="text-3xl font-black text-slate-100 mt-2">
                 {isLoading ? '...' : `$${Number(totalRevenue || 0).toFixed(2)}`}
               </p>
-
+              <p className="text-xs text-slate-500 mt-1">
+                From {completedPayments} completed payments
+              </p>
             </Card>
           </div>
+
 
           {/* Quick Navigation & Moderation Shortcuts */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

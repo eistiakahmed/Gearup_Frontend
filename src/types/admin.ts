@@ -1,16 +1,29 @@
 import { UserRole } from './auth';
 
 export interface AdminDashboardStats {
-  totalUsers: number;
-  totalGear: number;
-  totalRentals: number;
-  totalRevenue: number;
-  usersByRole?: {
-    CUSTOMER: number;
-    PROVIDER: number;
-    ADMIN: number;
+  users: {
+    total: number;
+    providers: number;
+    customers: number;
+    active: number;
   };
-  ordersByStatus?: Record<string, number>;
+  gear: {
+    total: number;
+    available: number;
+    unavailable: number;
+  };
+  orders: {
+    total: number;
+    byStatus: Record<string, number>;
+  };
+  payments: {
+    total: number;
+    completed: number;
+    pending: number;
+  };
+  revenue: {
+    total: number;
+  };
 }
 
 export interface AdminUserRecord {
