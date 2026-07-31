@@ -219,8 +219,8 @@ export default function CustomerDashboardPage() {
                               </Badge>
                             </td>
                             <td className="p-4 text-right">
-                              {/* 1. PLACED (Unpaid) -> Pay Now */}
-                              {order.status === RentalOrderStatus.PLACED && (
+                              {/* 1. PLACED or CONFIRMED (Unpaid) -> Pay Now */}
+                              {(order.status === RentalOrderStatus.PLACED || order.status === RentalOrderStatus.CONFIRMED) && (
                                 <Link href={`/dashboard/customer/orders/${order.id}/pay`}>
                                   <Button variant="primary" size="sm" rightIcon={<CreditCard className="w-3.5 h-3.5" />}>
                                     Pay Now
@@ -228,15 +228,14 @@ export default function CustomerDashboardPage() {
                                 </Link>
                               )}
 
-                              {/* 2. CONFIRMED or PAID -> Awaiting Pickup */}
-                              {(order.status === RentalOrderStatus.CONFIRMED ||
-                                order.status === RentalOrderStatus.PAID) && (
+                              {/* 2. PAID -> Awaiting Pickup */}
+                              {order.status === RentalOrderStatus.PAID && (
                                 <Button
                                   variant="secondary"
                                   size="sm"
                                   disabled
-                                  leftIcon={<Clock className="w-3.5 h-3.5 text-amber-600 animate-pulse" />}
-                                  className="bg-amber-50 text-amber-800 border border-amber-200 font-medium opacity-100 disabled:opacity-100 cursor-default"
+                                  leftIcon={<Clock className="w-3.5 h-3.5 text-purple-600 animate-pulse" />}
+                                  className="bg-purple-50 text-purple-800 border border-purple-200 font-medium opacity-100 disabled:opacity-100 cursor-default"
                                 >
                                   Awaiting Pickup
                                 </Button>
