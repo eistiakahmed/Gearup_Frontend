@@ -4,7 +4,7 @@ Reference document mapping Next.js App Router frontend components to backend RES
 
 ---
 
-## 🗺️ API Mapping Table
+## API Mapping Table
 
 | Next.js App Router Route | Frontend Component / Module | HTTP Method & Backend API Endpoint | Authentication & Permission |
 | :--- | :--- | :--- | :--- |
