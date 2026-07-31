@@ -44,6 +44,7 @@ export function useAuth() {
       const token = (response.data as any)?.token || (response as any)?.token;
       if (token && typeof window !== 'undefined') {
         localStorage.setItem('token', token);
+        document.cookie = `accessToken=${token}; path=/; max-age=604800; SameSite=Lax`;
       }
       // Revalidate user state after registration
       await mutateUser();
@@ -59,6 +60,7 @@ export function useAuth() {
       const token = (response.data as any)?.token || (response as any)?.token;
       if (token && typeof window !== 'undefined') {
         localStorage.setItem('token', token);
+        document.cookie = `accessToken=${token}; path=/; max-age=604800; SameSite=Lax`;
       }
       await mutateUser();
       return response;
@@ -70,6 +72,7 @@ export function useAuth() {
     if (typeof window !== 'undefined') {
       localStorage.removeItem('token');
       localStorage.removeItem('accessToken');
+      document.cookie = 'accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
     }
     // 1. Immediately clear user state → UI updates instantly
     await mutateUser(undefined, false);
