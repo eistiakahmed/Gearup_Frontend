@@ -19,12 +19,14 @@ export interface CreatePaymentPayload {
 }
 
 export interface PaymentResponseData {
-  paymentId: string;
+  paymentId?: string;
   checkoutUrl?: string;
+  paymentUrl?: string;
+  sessionId?: string;
   clientSecret?: string;
-  status: PaymentStatus;
-  amount: number;
-  currency: string;
+  status?: PaymentStatus;
+  amount?: number;
+  currency?: string;
 }
 
 export interface PaymentRecord {

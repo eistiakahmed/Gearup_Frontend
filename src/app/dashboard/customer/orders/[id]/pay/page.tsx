@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Button } from '@/components/ui/Button';
 import { Alert } from '@/components/ui/Alert';
 import { PublicLayout } from '@/components/common/PublicLayout';
-import { CreditCard, ShieldCheck, ArrowRight, ArrowLeft, Lock, CheckCircle2, Zap } from 'lucide-react';
+import { CreditCard, ShieldCheck, ArrowRight, ArrowLeft, Lock, CheckCircle2 } from 'lucide-react';
 
 export default function PaymentCheckoutPage({ params }: { params: Promise<{ id: string }> }) {
   const { id: orderId } = use(params);
@@ -32,17 +32,30 @@ export default function PaymentCheckoutPage({ params }: { params: Promise<{ id: 
         cancelUrl,
       });
 
-      if (response && response.success && response.data?.checkoutUrl) {
+      const checkoutUrl =
+        (response?.data as any)?.paymentUrl ||
+        response?.data?.checkoutUrl ||
+        (response?.data as any)?.providerResponse?.sessionUrl;
+
+      if (response && response.success && checkoutUrl) {
         // Redirect browser to Stripe Hosted Checkout
-        window.location.href = response.data.checkoutUrl;
+        window.location.href = checkoutUrl;
       } else {
-        setPaymentError('Payment session creation failed. Please try again.');
+        setPaymentError(
+          response?.message || 'Payment session creation failed. Please check if payment is already pending.'
+        );
       }
     } catch (err: any) {
       console.error('Payment checkout error:', err);
-      setPaymentError(
-        err?.message || err?.data?.message || 'Unable to connect to Stripe gateway. Please try again.'
-      );
+      let errMsg = 'Unable to connect to Stripe gateway. Please try again.';
+
+      if (err?.data?.message) {
+        errMsg = err.data.message;
+      } else if (err?.message) {
+        errMsg = err.message;
+      }
+
+      setPaymentError(errMsg);
     }
   };
 
