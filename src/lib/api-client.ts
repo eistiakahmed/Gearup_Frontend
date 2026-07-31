@@ -22,7 +22,18 @@ export async function apiClient<T = any>(
   endpoint: string,
   options: RequestInit = {}
 ): Promise<T> {
-  const url = endpoint.startsWith('http') ? endpoint : `${BASE_URL}${endpoint.startsWith('/') ? '' : '/'}${endpoint}`;
+  const rawBase = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+  const cleanBase = rawBase.replace(/\/+$/, '');
+  const baseHasApi = cleanBase.endsWith('/api');
+
+  let cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+  if (baseHasApi && cleanEndpoint.startsWith('/api/')) {
+    cleanEndpoint = cleanEndpoint.substring(4); // Strip redundant /api prefix
+  }
+
+  const url = endpoint.startsWith('http')
+    ? endpoint
+    : `${cleanBase}${cleanEndpoint}`;
 
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',

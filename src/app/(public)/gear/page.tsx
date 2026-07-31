@@ -105,18 +105,62 @@ export default function BrowseGearPage() {
 
             {/* Main Catalog View */}
             <main className="lg:col-span-9 flex flex-col gap-6">
-              {/* Results Header Bar */}
-              <div className="flex items-center justify-between px-2">
-                <p className="text-xs sm:text-sm text-slate-600">
-                  Showing <span className="font-bold text-slate-900">{items.length}</span> of{' '}
-                  <span className="font-bold text-slate-900">{meta.total || items.length}</span> items
-                </p>
+              {/* Results Header & Control Bar */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                <div className="flex items-center gap-3">
+                  <p className="text-xs sm:text-sm text-slate-600 font-medium">
+                    Showing <span className="font-bold text-slate-900">{items.length}</span> of{' '}
+                    <span className="font-bold text-slate-900">{meta.total || items.length}</span> items
+                  </p>
+                  {filters.category && (
+                    <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 font-medium">
+                      Category Active
+                    </span>
+                  )}
+                </div>
 
-                {filters.category && (
-                  <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 font-medium">
-                    Category Filter Active
-                  </span>
-                )}
+                {/* Top Right Controls: Sort By & Limit */}
+                <div className="flex items-center gap-3 self-end sm:self-auto">
+                  {/* Sort Selector */}
+                  <div className="flex items-center gap-1.5 text-xs text-slate-500">
+                    <span className="hidden sm:inline font-medium">Sort:</span>
+                    <select
+                      value={`${filters.sortBy || 'createdAt'}-${filters.sortOrder || 'desc'}`}
+                      onChange={(e) => {
+                        const [sortBy, sortOrder] = e.target.value.split('-');
+                        handleFilterChange({
+                          sortBy: sortBy as GearQueryFilters['sortBy'],
+                          sortOrder: sortOrder as 'asc' | 'desc',
+                        });
+                      }}
+                      className="px-2.5 py-1.5 rounded-xl border border-slate-200 bg-slate-50 text-xs font-semibold text-slate-800 hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
+                    >
+                      <option value="createdAt-desc">Newest First</option>
+                      <option value="dailyRate-asc">Price: Low to High</option>
+                      <option value="dailyRate-desc">Price: High to Low</option>
+                      <option value="name-asc">Name: A-Z</option>
+                    </select>
+                  </div>
+
+                  {/* Limit Selector */}
+                  <div className="flex items-center gap-1.5 text-xs text-slate-500">
+                    <span className="hidden sm:inline font-medium">Show:</span>
+                    <select
+                      value={filters.limit || 12}
+                      onChange={(e) => {
+                        handleFilterChange({
+                          limit: Number(e.target.value),
+                          page: 1,
+                        });
+                      }}
+                      className="px-2.5 py-1.5 rounded-xl border border-slate-200 bg-slate-50 text-xs font-semibold text-slate-800 hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
+                    >
+                      <option value={12}>12 / page</option>
+                      <option value={24}>24 / page</option>
+                      <option value={48}>48 / page</option>
+                    </select>
+                  </div>
+                </div>
               </div>
 
               {/* Grid or Skeleton */}

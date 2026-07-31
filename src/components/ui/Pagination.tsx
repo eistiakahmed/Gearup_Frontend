@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
-import { Button } from './Button';
 
 interface PaginationProps {
   currentPage: number;
@@ -19,7 +18,7 @@ export function Pagination({
   totalItems,
   itemsPerPage = 12,
 }: PaginationProps) {
-  if (totalPages <= 1) return null;
+  if (totalPages <= 1 && (!totalItems || totalItems <= itemsPerPage)) return null;
 
   // Generate page numbers with smart ellipsis
   const getPageNumbers = () => {
@@ -77,30 +76,28 @@ export function Pagination({
       )}
 
       {/* Pagination Controls */}
-      <div className="flex items-center gap-1.5">
+      <div className="flex items-center gap-1.5 flex-wrap justify-center">
         {/* First Page */}
-        <Button
-          variant="outline"
-          size="sm"
+        <button
+          type="button"
           onClick={() => onPageChange(1)}
           disabled={currentPage === 1}
           title="First Page"
-          className="p-2 h-9 w-9 flex items-center justify-center rounded-xl"
+          className="flex items-center justify-center h-9 w-9 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 hover:text-emerald-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-sm"
         >
-          <ChevronsLeft className="w-4 h-4" />
-        </Button>
+          <ChevronsLeft className="w-4 h-4 shrink-0" />
+        </button>
 
         {/* Previous Page */}
-        <Button
-          variant="outline"
-          size="sm"
+        <button
+          type="button"
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="px-3 h-9 flex items-center gap-1 text-xs font-semibold rounded-xl"
+          className="flex flex-row items-center justify-center gap-1.5 px-3 h-9 rounded-xl border border-slate-200 bg-white text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-emerald-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-sm whitespace-nowrap"
         >
-          <ChevronLeft className="w-4 h-4" />
-          <span className="hidden sm:inline">Prev</span>
-        </Button>
+          <ChevronLeft className="w-4 h-4 shrink-0" />
+          <span>Prev</span>
+        </button>
 
         {/* Numeric Page Buttons */}
         <div className="flex items-center gap-1 mx-1">
@@ -132,28 +129,26 @@ export function Pagination({
         </div>
 
         {/* Next Page */}
-        <Button
-          variant="outline"
-          size="sm"
+        <button
+          type="button"
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="px-3 h-9 flex items-center gap-1 text-xs font-semibold rounded-xl"
+          className="flex flex-row items-center justify-center gap-1.5 px-3 h-9 rounded-xl border border-slate-200 bg-white text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-emerald-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-sm whitespace-nowrap"
         >
-          <span className="hidden sm:inline">Next</span>
-          <ChevronRight className="w-4 h-4" />
-        </Button>
+          <span>Next</span>
+          <ChevronRight className="w-4 h-4 shrink-0" />
+        </button>
 
         {/* Last Page */}
-        <Button
-          variant="outline"
-          size="sm"
+        <button
+          type="button"
           onClick={() => onPageChange(totalPages)}
           disabled={currentPage === totalPages}
           title="Last Page"
-          className="p-2 h-9 w-9 flex items-center justify-center rounded-xl"
+          className="flex items-center justify-center h-9 w-9 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 hover:text-emerald-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-sm"
         >
-          <ChevronsRight className="w-4 h-4" />
-        </Button>
+          <ChevronsRight className="w-4 h-4 shrink-0" />
+        </button>
       </div>
     </div>
   );

@@ -48,7 +48,7 @@ export interface GearQueryFilters {
   maxPrice?: number;
   brand?: string;
   isAvailable?: boolean;
-  sortBy?: 'price' | 'name' | 'createdAt' | 'popularity';
+  sortBy?: 'price' | 'name' | 'createdAt' | 'popularity' | 'dailyRate';
   sortOrder?: 'asc' | 'desc';
   page?: number;
   limit?: number;
