@@ -50,7 +50,9 @@ export interface RentalOrder {
   returnAddress?: string | null;
   notes?: string | null;
   paymentId?: string | null;
+  payments?: any[];
   createdAt: string;
+
   updatedAt: string;
 }
 

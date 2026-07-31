@@ -199,6 +199,10 @@ export default function CustomerDashboardPage() {
                         const startDateStr = new Date(order.startDate).toLocaleDateString();
                         const endDateStr = new Date(order.endDate).toLocaleDateString();
 
+                        const isOrderPaid =
+                          order.status?.toUpperCase() === 'PAID' ||
+                          order.payments?.some((p: any) => p.status === 'COMPLETED');
+
                         return (
                           <tr key={order.id} className="hover:bg-slate-900/50 transition-colors">
                             <td className="p-4 font-mono font-bold text-slate-300 text-xs">
@@ -212,19 +216,34 @@ export default function CustomerDashboardPage() {
                               ${Number(order.totalAmount || 0).toFixed(2)}
                             </td>
                             <td className="p-4">
-                              <Badge variant={getOrderStatusBadgeVariant(order.status)}>
-                                {order.status}
+                              <Badge variant={isOrderPaid ? 'paid' : getOrderStatusBadgeVariant(order.status)}>
+
+                                {isOrderPaid ? 'PAID' : order.status}
                               </Badge>
                             </td>
                             <td className="p-4 text-right">
-                              {(order.status === RentalOrderStatus.PLACED ||
-                                order.status === RentalOrderStatus.CONFIRMED) && (
+                              {order.status === RentalOrderStatus.PLACED && !isOrderPaid && (
                                 <Link href={`/dashboard/customer/orders/${order.id}/pay`}>
                                   <Button variant="primary" size="sm" rightIcon={<CreditCard className="w-3.5 h-3.5" />}>
                                     Pay Now
                                   </Button>
                                 </Link>
                               )}
+
+                              {(order.status === RentalOrderStatus.CONFIRMED ||
+                                order.status === RentalOrderStatus.PAID ||
+                                isOrderPaid) &&
+                                order.status !== RentalOrderStatus.RETURNED && (
+                                  <Button
+                                    variant="secondary"
+                                    size="sm"
+                                    disabled
+                                    leftIcon={<Clock className="w-3.5 h-3.5 text-amber-400 animate-pulse" />}
+                                    className="bg-amber-500/10 text-amber-400 border border-amber-500/30 font-medium opacity-100 disabled:opacity-100 cursor-default"
+                                  >
+                                    Waiting for Approval
+                                  </Button>
+                                )}
 
                               {order.status === RentalOrderStatus.RETURNED && (
                                 <Button
@@ -239,10 +258,15 @@ export default function CustomerDashboardPage() {
 
                               {order.status !== RentalOrderStatus.PLACED &&
                                 order.status !== RentalOrderStatus.CONFIRMED &&
+                                order.status !== RentalOrderStatus.PAID &&
+                                !isOrderPaid &&
                                 order.status !== RentalOrderStatus.RETURNED && (
                                   <span className="text-xs text-slate-500 font-mono">-</span>
                                 )}
                             </td>
+
+
+
 
                           </tr>
                         );
