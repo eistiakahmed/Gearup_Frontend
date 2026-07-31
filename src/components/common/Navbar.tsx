@@ -47,15 +47,15 @@ export function Navbar() {
   const dashboardPath = getDashboardPath(user?.role);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-xl transition-all">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/80 backdrop-blur-xl transition-all shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="p-2 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 text-slate-950 font-bold shadow-md shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+          <div className="p-2 rounded-xl bg-emerald-600 text-white font-bold shadow-md shadow-emerald-600/20 group-hover:scale-105 transition-transform">
             <Dumbbell className="w-5 h-5" />
           </div>
-          <span className="text-xl font-black tracking-tight text-white flex items-center gap-1">
-            GearUp <span className="text-emerald-400 font-bold text-sm">🏋️</span>
+          <span className="text-xl font-black tracking-tight text-slate-900 flex items-center gap-1">
+            GearUp <span className="text-emerald-600 font-bold text-sm">🏋️</span>
           </span>
         </Link>
 
@@ -69,8 +69,8 @@ export function Navbar() {
                 href={link.href}
                 className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-medium transition-all ${
                   isActive
-                    ? 'bg-slate-800/80 text-emerald-400 font-semibold'
-                    : 'text-slate-300 hover:text-white hover:bg-slate-900/60'
+                    ? 'bg-emerald-50 text-emerald-700 font-semibold'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                 }`}
               >
                 {link.icon}
@@ -83,53 +83,53 @@ export function Navbar() {
         {/* Right Side: Auth / Profile */}
         <div className="hidden md:flex items-center gap-3">
           {isLoading ? (
-            <div className="h-9 w-28 rounded-xl bg-slate-800/60 animate-pulse" />
+            <div className="h-9 w-28 rounded-xl bg-slate-200 animate-pulse" />
           ) : isAuthenticated && user ? (
             <div className="relative">
               <button
                 type="button"
                 onClick={() => setIsUserDropdownOpen((prev) => !prev)}
-                className="flex items-center gap-2.5 p-1.5 pl-3 rounded-xl border border-slate-800 bg-slate-900/80 hover:bg-slate-800/80 transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
+                className="flex items-center gap-2.5 p-1.5 pl-3 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500/30 shadow-sm"
               >
                 <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold text-xs">
+                  <div className="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs">
                     {user.name.charAt(0).toUpperCase()}
                   </div>
-                  <span className="text-sm font-semibold text-slate-100 max-w-[120px] truncate">
+                  <span className="text-sm font-semibold text-slate-900 max-w-[120px] truncate">
                     {user.name}
                   </span>
                 </div>
                 <Badge variant={getRoleBadgeVariant(user.role)}>
                   {user.role}
                 </Badge>
-                <ChevronDown className="w-4 h-4 text-slate-400 ml-0.5" />
+                <ChevronDown className="w-4 h-4 text-slate-500 ml-0.5" />
               </button>
 
               {/* Dropdown Menu */}
               {isUserDropdownOpen && (
                 <div
-                  className="absolute right-0 mt-2 w-56 rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl shadow-black/60 p-2 flex flex-col gap-1 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
+                  className="absolute right-0 mt-2 w-56 rounded-2xl bg-white border border-slate-200 shadow-xl shadow-slate-200/60 p-2 flex flex-col gap-1 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
                   onClick={() => setIsUserDropdownOpen(false)}
                 >
-                  <div className="px-3 py-2 border-b border-slate-800/80 mb-1">
-                    <p className="text-xs text-slate-400">Signed in as</p>
-                    <p className="text-sm font-semibold text-slate-100 truncate">{user.email}</p>
+                  <div className="px-3 py-2 border-b border-slate-100 mb-1">
+                    <p className="text-xs text-slate-500">Signed in as</p>
+                    <p className="text-sm font-semibold text-slate-900 truncate">{user.email}</p>
                   </div>
 
                   <Link
                     href={dashboardPath}
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-medium text-slate-200 hover:bg-slate-800 transition-colors"
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100 transition-colors"
                   >
-                    <LayoutDashboard className="w-4 h-4 text-emerald-400" />
+                    <LayoutDashboard className="w-4 h-4 text-emerald-600" />
                     <span>Dashboard</span>
                   </Link>
 
                   {user.role === UserRole.CUSTOMER && (
                     <Link
                       href="/dashboard/customer"
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-medium text-slate-200 hover:bg-slate-800 transition-colors"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100 transition-colors"
                     >
-                      <ShoppingBag className="w-4 h-4 text-cyan-400" />
+                      <ShoppingBag className="w-4 h-4 text-cyan-600" />
                       <span>My Rentals</span>
                     </Link>
                   )}
@@ -137,9 +137,9 @@ export function Navbar() {
                   {user.role === UserRole.PROVIDER && (
                     <Link
                       href="/dashboard/provider/orders"
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-medium text-slate-200 hover:bg-slate-800 transition-colors"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100 transition-colors"
                     >
-                      <Store className="w-4 h-4 text-amber-400" />
+                      <Store className="w-4 h-4 text-amber-600" />
                       <span>Incoming Orders</span>
                     </Link>
                   )}
@@ -147,19 +147,19 @@ export function Navbar() {
                   {user.role === UserRole.ADMIN && (
                     <Link
                       href="/dashboard/admin/users"
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-medium text-slate-200 hover:bg-slate-800 transition-colors"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100 transition-colors"
                     >
-                      <ShieldCheck className="w-4 h-4 text-purple-400" />
+                      <ShieldCheck className="w-4 h-4 text-purple-600" />
                       <span>User Management</span>
                     </Link>
                   )}
 
-                  <div className="border-t border-slate-800/80 my-1" />
+                  <div className="border-t border-slate-100 my-1" />
 
                   <button
                     type="button"
                     onClick={() => logout()}
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-semibold text-rose-400 hover:bg-rose-500/10 transition-colors w-full text-left"
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-semibold text-rose-600 hover:bg-rose-50 transition-colors w-full text-left"
                   >
                     <LogOut className="w-4 h-4" />
                     <span>Sign Out</span>
@@ -169,12 +169,12 @@ export function Navbar() {
             </div>
           ) : (
             <div className="flex items-center gap-2">
-              <Link href="/login">
+              <Link href="/auth/login">
                 <Button variant="ghost" size="sm">
                   Sign In
                 </Button>
               </Link>
-              <Link href="/register">
+              <Link href="/auth/register">
                 <Button variant="primary" size="sm">
                   Get Started
                 </Button>
@@ -187,7 +187,7 @@ export function Navbar() {
         <button
           type="button"
           onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-          className="md:hidden p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-900 focus:outline-none"
+          className="md:hidden p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none"
           aria-label="Toggle Navigation Menu"
         >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -196,27 +196,27 @@ export function Navbar() {
 
       {/* Mobile Drawer Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden border-t border-slate-800 bg-slate-950 px-4 py-4 flex flex-col gap-3">
+        <div className="md:hidden border-t border-slate-200 bg-white px-4 py-4 flex flex-col gap-3 shadow-lg">
           <nav className="flex flex-col gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-slate-900"
+                className="px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100"
               >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          <div className="border-t border-slate-800 pt-3 flex flex-col gap-2">
+          <div className="border-t border-slate-200 pt-3 flex flex-col gap-2">
             {isAuthenticated && user ? (
               <>
                 <div className="flex items-center justify-between px-3 py-1">
                   <div className="flex items-center gap-2">
-                    <UserIcon className="w-4 h-4 text-emerald-400" />
-                    <span className="text-sm font-semibold text-slate-100">{user.name}</span>
+                    <UserIcon className="w-4 h-4 text-emerald-600" />
+                    <span className="text-sm font-semibold text-slate-900">{user.name}</span>
                   </div>
                   <Badge variant={getRoleBadgeVariant(user.role)}>{user.role}</Badge>
                 </div>
@@ -224,7 +224,7 @@ export function Navbar() {
                 <Link
                   href={dashboardPath}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-900 text-sm font-semibold text-emerald-400"
+                  className="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-100 text-sm font-semibold text-emerald-700"
                 >
                   <LayoutDashboard className="w-4 h-4" />
                   <span>Go to Dashboard</span>

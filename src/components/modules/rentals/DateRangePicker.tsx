@@ -110,7 +110,7 @@ export function DateRangePicker({ gear, onSubmitRental, isSubmitting = false }: 
           min={todayStr}
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
-          leftIcon={<Calendar className="w-4 h-4 text-emerald-400" />}
+          leftIcon={<Calendar className="w-4 h-4 text-emerald-600" />}
           required
         />
 
@@ -120,37 +120,37 @@ export function DateRangePicker({ gear, onSubmitRental, isSubmitting = false }: 
           min={startDate || todayStr}
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
-          leftIcon={<Calendar className="w-4 h-4 text-emerald-400" />}
+          leftIcon={<Calendar className="w-4 h-4 text-emerald-600" />}
           required
         />
       </div>
 
       {/* Quantity Selector */}
-      <div className="flex items-center justify-between p-3 rounded-xl bg-slate-900/80 border border-slate-800">
+      <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-200">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-slate-300 block">
+          <span className="text-xs font-semibold uppercase tracking-wider text-slate-700 block">
             Quantity
           </span>
           <span className="text-xs text-slate-500">Available: {gear.stockQuantity}</span>
         </div>
 
-        <div className="flex items-center gap-3 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
+        <div className="flex items-center gap-3 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-sm">
           <button
             type="button"
             onClick={() => setQuantity((q) => Math.max(1, q - 1))}
             disabled={quantity <= 1}
-            className="text-slate-400 hover:text-white disabled:opacity-30 p-1"
+            className="text-slate-500 hover:text-slate-900 disabled:opacity-30 p-1"
           >
             <Minus className="w-3.5 h-3.5" />
           </button>
-          <span className="text-sm font-bold text-slate-100 min-w-[20px] text-center">
+          <span className="text-sm font-bold text-slate-900 min-w-[20px] text-center">
             {quantity}
           </span>
           <button
             type="button"
             onClick={() => setQuantity((q) => Math.min(gear.stockQuantity || 1, q + 1))}
             disabled={quantity >= (gear.stockQuantity || 1)}
-            className="text-slate-400 hover:text-white disabled:opacity-30 p-1"
+            className="text-slate-500 hover:text-slate-900 disabled:opacity-30 p-1"
           >
             <Plus className="w-3.5 h-3.5" />
           </button>
@@ -158,23 +158,22 @@ export function DateRangePicker({ gear, onSubmitRental, isSubmitting = false }: 
       </div>
 
       {/* Price Summary Breakdown */}
-      <div className="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 flex flex-col gap-2.5 text-xs sm:text-sm">
-        <div className="flex items-center justify-between text-slate-400">
+      <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-2.5 text-xs sm:text-sm">
+        <div className="flex items-center justify-between text-slate-600">
           <span>Daily Rate</span>
-          <span className="font-semibold text-slate-200">${gear.dailyRate} / day</span>
+          <span className="font-semibold text-slate-900">${gear.dailyRate} / day</span>
         </div>
-        <div className="flex items-center justify-between text-slate-400">
+        <div className="flex items-center justify-between text-slate-600">
           <span>Rental Duration</span>
-          <span className="font-semibold text-slate-200">{totalDays} {totalDays === 1 ? 'day' : 'days'}</span>
+          <span className="font-semibold text-slate-900">{totalDays} {totalDays === 1 ? 'day' : 'days'}</span>
         </div>
-        <div className="flex items-center justify-between text-slate-400">
+        <div className="flex items-center justify-between text-slate-600">
           <span>Quantity</span>
-          <span className="font-semibold text-slate-200">{quantity} item(s)</span>
+          <span className="font-semibold text-slate-900">{quantity} item(s)</span>
         </div>
-        <div className="border-t border-slate-800 pt-2.5 flex items-center justify-between text-base font-bold">
-          <span className="text-slate-100">Total Rental Cost</span>
-          <span className="text-emerald-400 font-black text-xl">${Number(totalPrice || 0).toFixed(2)}</span>
-
+        <div className="border-t border-slate-200 pt-2.5 flex items-center justify-between text-base font-bold">
+          <span className="text-slate-900">Total Rental Cost</span>
+          <span className="text-emerald-700 font-black text-xl">${Number(totalPrice || 0).toFixed(2)}</span>
         </div>
       </div>
 

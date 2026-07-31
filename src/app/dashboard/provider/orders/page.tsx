@@ -66,7 +66,7 @@ export default function ProviderOrdersPage() {
 
   return (
     <PublicLayout>
-      <div className="min-h-screen bg-slate-950 text-slate-100 py-8 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-slate-50 text-slate-900 py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col gap-8">
           <div className="flex items-center justify-between">
             <Link href="/dashboard/provider">
@@ -77,16 +77,16 @@ export default function ProviderOrdersPage() {
           </div>
 
           {/* Header Banner */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-slate-900/90 to-amber-950/40 border border-slate-800/80 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 text-white shadow-xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full blur-3xl pointer-events-none" />
             <div className="flex flex-col gap-1 z-10">
-              <div className="flex items-center gap-2 text-amber-400 font-bold text-xs uppercase tracking-wider">
+              <div className="flex items-center gap-2 text-amber-200 font-bold text-xs uppercase tracking-wider">
                 <ShoppingBag className="w-4 h-4" /> Order Management
               </div>
-              <h1 className="text-2xl sm:text-4xl font-black text-slate-100 tracking-tight">
+              <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
                 Incoming Customer Orders ({orders.length})
               </h1>
-              <p className="text-slate-400 text-sm max-w-xl">
+              <p className="text-emerald-100 text-sm max-w-xl">
                 Review rental requests, confirm availability, and mark equipment as Picked Up or Returned.
               </p>
             </div>
@@ -105,19 +105,19 @@ export default function ProviderOrdersPage() {
           )}
 
           {/* Incoming Orders Table */}
-          <Card className="overflow-hidden border-slate-800">
+          <Card className="overflow-hidden border-slate-200 bg-white shadow-sm">
             {isLoading ? (
-              <div className="p-12 text-center text-slate-400 animate-pulse">
+              <div className="p-12 text-center text-slate-500 animate-pulse">
                 Loading incoming customer orders...
               </div>
             ) : orders.length === 0 ? (
-              <div className="p-12 text-center text-slate-400">
+              <div className="p-12 text-center text-slate-500">
                 No incoming customer orders yet.
               </div>
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs sm:text-sm">
-                  <thead className="bg-slate-900/90 text-slate-400 uppercase tracking-wider border-b border-slate-800">
+                  <thead className="bg-slate-50 text-slate-600 uppercase tracking-wider border-b border-slate-200">
                     <tr>
                       <th className="p-4">Order Ref</th>
                       <th className="p-4">Customer</th>
@@ -128,7 +128,7 @@ export default function ProviderOrdersPage() {
                       <th className="p-4 text-right">Status Action</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800/80">
+                  <tbody className="divide-y divide-slate-100">
                     {orders.map((order) => {
                       const firstItem = order.items && order.items.length > 0 ? order.items[0] : null;
                       const gearName = firstItem?.gear?.name || 'Equipment Item';
@@ -137,21 +137,21 @@ export default function ProviderOrdersPage() {
                       const endDateStr = new Date(order.endDate).toLocaleDateString();
 
                       return (
-                        <tr key={order.id} className="hover:bg-slate-900/50 transition-colors">
-                          <td className="p-4 font-mono font-bold text-slate-300 text-xs">
+                        <tr key={order.id} className="hover:bg-slate-50 transition-colors">
+                          <td className="p-4 font-mono font-bold text-slate-700 text-xs">
                             {order.id.slice(0, 8)}...
                           </td>
                           <td className="p-4">
                             <div className="flex items-center gap-2">
-                              <UserIcon className="w-4 h-4 text-amber-400 shrink-0" />
-                              <span className="font-semibold text-slate-100">{customerName}</span>
+                              <UserIcon className="w-4 h-4 text-amber-600 shrink-0" />
+                              <span className="font-semibold text-slate-900">{customerName}</span>
                             </div>
                           </td>
-                          <td className="p-4 font-semibold text-slate-200">{gearName}</td>
-                          <td className="p-4 text-slate-300">
+                          <td className="p-4 font-semibold text-slate-900">{gearName}</td>
+                          <td className="p-4 text-slate-600">
                             {startDateStr} - {endDateStr} ({order.totalDays || 1}d)
                           </td>
-                          <td className="p-4 font-bold text-emerald-400">
+                          <td className="p-4 font-bold text-emerald-700">
                             ${Number(order.totalAmount || 0).toFixed(2)}
                           </td>
 
@@ -180,7 +180,7 @@ export default function ProviderOrdersPage() {
                                 isLoading={isUpdatingStatus}
                                 onClick={() => handleUpdateStatus(order.id, RentalOrderStatus.PICKED_UP)}
                                 leftIcon={<PackageCheck className="w-3.5 h-3.5" />}
-                                className="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold"
+                                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold"
                               >
                                 Mark Picked Up
                               </Button>
@@ -199,18 +199,17 @@ export default function ProviderOrdersPage() {
                             )}
 
                             {order.status === RentalOrderStatus.RETURNED && (
-                              <span className="text-xs font-semibold text-emerald-400 inline-flex items-center gap-1">
-                                <CheckCircle2 className="w-3.5 h-3.5" /> Returned & Completed
+                              <span className="text-xs font-semibold text-emerald-700 inline-flex items-center gap-1">
+                                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> Returned & Completed
                               </span>
                             )}
 
                             {order.status === RentalOrderStatus.CANCELLED && (
-                              <span className="text-xs font-semibold text-rose-400">
+                              <span className="text-xs font-semibold text-rose-600">
                                 Order Cancelled
                               </span>
                             )}
                           </td>
-
                         </tr>
                       );
                     })}

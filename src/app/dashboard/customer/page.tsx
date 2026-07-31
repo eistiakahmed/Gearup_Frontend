@@ -85,19 +85,19 @@ export default function CustomerDashboardPage() {
 
   return (
     <PublicLayout>
-      <div className="min-h-screen bg-slate-950 text-slate-100 py-8 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-slate-50 text-slate-900 py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col gap-8">
           {/* Header Banner */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-slate-900/90 to-emerald-950/40 border border-slate-800/80 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 text-white shadow-xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full blur-3xl pointer-events-none" />
             <div className="flex flex-col gap-1 z-10">
-              <div className="flex items-center gap-2 text-emerald-400 font-bold text-xs uppercase tracking-wider">
+              <div className="flex items-center gap-2 text-emerald-100 font-bold text-xs uppercase tracking-wider">
                 <ShoppingBag className="w-4 h-4" /> Customer Dashboard
               </div>
-              <h1 className="text-2xl sm:text-4xl font-black text-slate-100 tracking-tight">
+              <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
                 My Rental Orders & History
               </h1>
-              <p className="text-slate-400 text-sm max-w-xl">
+              <p className="text-emerald-100 text-sm max-w-xl">
                 Track active rentals, make payments for confirmed orders, and review equipment after returning.
               </p>
             </div>
@@ -111,80 +111,80 @@ export default function CustomerDashboardPage() {
 
           {/* Overview Metrics Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Card className="p-5 border-slate-800/80 bg-slate-900/70">
+            <Card className="p-5 border-slate-200 bg-white shadow-sm">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                   Total Orders
                 </span>
-                <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400">
+                <div className="p-2 rounded-lg bg-emerald-100 text-emerald-700">
                   <Package className="w-5 h-5" />
                 </div>
               </div>
-              <p className="text-3xl font-black text-slate-100 mt-2">{totalOrders}</p>
+              <p className="text-3xl font-black text-slate-900 mt-2">{totalOrders}</p>
             </Card>
 
-            <Card className="p-5 border-slate-800/80 bg-slate-900/70">
+            <Card className="p-5 border-slate-200 bg-white shadow-sm">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                   Active Rentals
                 </span>
-                <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-400">
+                <div className="p-2 rounded-lg bg-cyan-100 text-cyan-700">
                   <Clock className="w-5 h-5" />
                 </div>
               </div>
-              <p className="text-3xl font-black text-slate-100 mt-2">{activeRentals}</p>
+              <p className="text-3xl font-black text-slate-900 mt-2">{activeRentals}</p>
             </Card>
 
-            <Card className="p-5 border-slate-800/80 bg-slate-900/70">
+            <Card className="p-5 border-slate-200 bg-white shadow-sm">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                   Completed Rentals
                 </span>
-                <div className="p-2 rounded-lg bg-purple-500/10 text-purple-400">
+                <div className="p-2 rounded-lg bg-purple-100 text-purple-700">
                   <CheckCircle2 className="w-5 h-5" />
                 </div>
               </div>
-              <p className="text-3xl font-black text-slate-100 mt-2">{completedRentals}</p>
+              <p className="text-3xl font-black text-slate-900 mt-2">{completedRentals}</p>
             </Card>
 
-            <Card className="p-5 border-slate-800/80 bg-slate-900/70">
+            <Card className="p-5 border-slate-200 bg-white shadow-sm">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                   Total Spent
                 </span>
-                <div className="p-2 rounded-lg bg-amber-500/10 text-amber-400">
+                <div className="p-2 rounded-lg bg-amber-100 text-amber-700">
                   <DollarSign className="w-5 h-5" />
                 </div>
               </div>
-              <p className="text-3xl font-black text-slate-100 mt-2">${Number(totalSpent || 0).toFixed(2)}</p>
+              <p className="text-3xl font-black text-slate-900 mt-2">${Number(totalSpent || 0).toFixed(2)}</p>
             </Card>
           </div>
 
           {/* Rental Orders History Table */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold text-slate-100 flex items-center gap-2">
-                <ShoppingBag className="w-5 h-5 text-emerald-400" /> My Rental Orders
+              <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+                <ShoppingBag className="w-5 h-5 text-emerald-600" /> My Rental Orders
               </h2>
-              <span className="text-xs text-slate-400">Real-time SWR Status</span>
+              <span className="text-xs text-slate-500">Real-time SWR Status</span>
             </div>
 
-            <Card className="overflow-hidden border-slate-800">
+            <Card className="overflow-hidden border-slate-200 bg-white shadow-sm">
               {isOrdersLoading ? (
-                <div className="p-12 text-center text-slate-400 animate-pulse">
+                <div className="p-12 text-center text-slate-500 animate-pulse">
                   Loading rental orders...
                 </div>
               ) : orders.length === 0 ? (
-                <div className="p-12 text-center text-slate-400">
+                <div className="p-12 text-center text-slate-500">
                   No rental orders found yet.{' '}
-                  <Link href="/gear" className="text-emerald-400 underline ml-1 font-semibold">
+                  <Link href="/gear" className="text-emerald-700 underline ml-1 font-semibold">
                     Browse Equipment to Rent
                   </Link>
                 </div>
               ) : (
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-xs sm:text-sm">
-                    <thead className="bg-slate-900/90 text-slate-400 uppercase tracking-wider border-b border-slate-800">
+                    <thead className="bg-slate-50 text-slate-600 uppercase tracking-wider border-b border-slate-200">
                       <tr>
                         <th className="p-4">Order Ref</th>
                         <th className="p-4">Equipment</th>
@@ -194,27 +194,23 @@ export default function CustomerDashboardPage() {
                         <th className="p-4 text-right">Actions</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-800/80">
+                    <tbody className="divide-y divide-slate-100">
                       {orders.map((order) => {
                         const firstItem = order.items && order.items.length > 0 ? order.items[0] : null;
                         const gearName = firstItem?.gear?.name || 'Equipment Rental';
                         const startDateStr = new Date(order.startDate).toLocaleDateString();
                         const endDateStr = new Date(order.endDate).toLocaleDateString();
 
-                        const isOrderPaid =
-                          order.status?.toUpperCase() === 'PAID' ||
-                          order.payments?.some((p: any) => p.status === 'COMPLETED');
-
                         return (
-                          <tr key={order.id} className="hover:bg-slate-900/50 transition-colors">
-                            <td className="p-4 font-mono font-bold text-slate-300 text-xs">
+                          <tr key={order.id} className="hover:bg-slate-50 transition-colors">
+                            <td className="p-4 font-mono font-bold text-slate-700 text-xs">
                               {order.id.slice(0, 8)}...
                             </td>
-                            <td className="p-4 font-semibold text-slate-100">{gearName}</td>
-                            <td className="p-4 text-slate-300">
+                            <td className="p-4 font-semibold text-slate-900">{gearName}</td>
+                            <td className="p-4 text-slate-600">
                               {startDateStr} - {endDateStr} ({order.totalDays || 1}d)
                             </td>
-                            <td className="p-4 font-bold text-emerald-400">
+                            <td className="p-4 font-bold text-emerald-700">
                               ${Number(order.totalAmount || 0).toFixed(2)}
                             </td>
                             <td className="p-4">
@@ -239,8 +235,8 @@ export default function CustomerDashboardPage() {
                                   variant="secondary"
                                   size="sm"
                                   disabled
-                                  leftIcon={<Clock className="w-3.5 h-3.5 text-amber-400 animate-pulse" />}
-                                  className="bg-amber-500/10 text-amber-400 border border-amber-500/30 font-medium opacity-100 disabled:opacity-100 cursor-default"
+                                  leftIcon={<Clock className="w-3.5 h-3.5 text-amber-600 animate-pulse" />}
+                                  className="bg-amber-50 text-amber-800 border border-amber-200 font-medium opacity-100 disabled:opacity-100 cursor-default"
                                 >
                                   Awaiting Pickup
                                 </Button>
@@ -252,8 +248,8 @@ export default function CustomerDashboardPage() {
                                   variant="secondary"
                                   size="sm"
                                   disabled
-                                  leftIcon={<PackageCheck className="w-3.5 h-3.5 text-emerald-400" />}
-                                  className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-medium opacity-100 disabled:opacity-100 cursor-default"
+                                  leftIcon={<PackageCheck className="w-3.5 h-3.5 text-emerald-600" />}
+                                  className="bg-emerald-50 text-emerald-800 border border-emerald-200 font-medium opacity-100 disabled:opacity-100 cursor-default"
                                 >
                                   Active Rental
                                 </Button>
@@ -265,7 +261,7 @@ export default function CustomerDashboardPage() {
                                   variant="outline"
                                   size="sm"
                                   onClick={() => handleOpenReview(order)}
-                                  leftIcon={<Star className="w-3.5 h-3.5 text-amber-400" />}
+                                  leftIcon={<Star className="w-3.5 h-3.5 text-amber-500" />}
                                 >
                                   Leave Review
                                 </Button>
@@ -273,14 +269,9 @@ export default function CustomerDashboardPage() {
 
                               {/* 5. CANCELLED -> - */}
                               {order.status === RentalOrderStatus.CANCELLED && (
-                                <span className="text-xs text-slate-500 font-mono">-</span>
+                                <span className="text-xs text-slate-400 font-mono">-</span>
                               )}
                             </td>
-
-
-
-
-
                           </tr>
                         );
                       })}
@@ -293,23 +284,23 @@ export default function CustomerDashboardPage() {
 
           {/* Payment History Table */}
           <div className="flex flex-col gap-4">
-            <h2 className="text-xl font-bold text-slate-100 flex items-center gap-2">
-              <CreditCard className="w-5 h-5 text-teal-400" /> Payment History
+            <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+              <CreditCard className="w-5 h-5 text-teal-600" /> Payment History
             </h2>
 
-            <Card className="overflow-hidden border-slate-800">
+            <Card className="overflow-hidden border-slate-200 bg-white shadow-sm">
               {isPaymentsLoading ? (
-                <div className="p-12 text-center text-slate-400 animate-pulse">
+                <div className="p-12 text-center text-slate-500 animate-pulse">
                   Loading payment history...
                 </div>
               ) : payments.length === 0 ? (
-                <div className="p-12 text-center text-slate-400">
+                <div className="p-12 text-center text-slate-500">
                   No payment records found yet.
                 </div>
               ) : (
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-xs sm:text-sm">
-                    <thead className="bg-slate-900/90 text-slate-400 uppercase tracking-wider border-b border-slate-800">
+                    <thead className="bg-slate-50 text-slate-600 uppercase tracking-wider border-b border-slate-200">
                       <tr>
                         <th className="p-4">Payment ID</th>
                         <th className="p-4">Order Ref</th>
@@ -319,14 +310,14 @@ export default function CustomerDashboardPage() {
                         <th className="p-4">Date</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-800/80">
+                    <tbody className="divide-y divide-slate-100">
                       {payments.map((pm) => (
-                        <tr key={pm.id} className="hover:bg-slate-900/50 transition-colors">
-                          <td className="p-4 font-mono text-slate-400 text-xs">{pm.id.slice(0, 8)}...</td>
-                          <td className="p-4 font-mono text-slate-300 text-xs">{pm.orderId.slice(0, 8)}...</td>
-                          <td className="p-4 font-bold text-slate-100">${Number(pm.amount || 0).toFixed(2)}</td>
+                        <tr key={pm.id} className="hover:bg-slate-50 transition-colors">
+                          <td className="p-4 font-mono text-slate-500 text-xs">{pm.id.slice(0, 8)}...</td>
+                          <td className="p-4 font-mono text-slate-700 text-xs">{pm.orderId.slice(0, 8)}...</td>
+                          <td className="p-4 font-bold text-slate-900">${Number(pm.amount || 0).toFixed(2)}</td>
 
-                          <td className="p-4 font-semibold text-emerald-400">{pm.method}</td>
+                          <td className="p-4 font-semibold text-emerald-700">{pm.method}</td>
                           <td className="p-4">
                             <Badge
                               variant={
@@ -340,7 +331,7 @@ export default function CustomerDashboardPage() {
                               {pm.status}
                             </Badge>
                           </td>
-                          <td className="p-4 text-slate-400 text-xs">
+                          <td className="p-4 text-slate-500 text-xs">
                             {new Date(pm.createdAt).toLocaleDateString()}
                           </td>
                         </tr>

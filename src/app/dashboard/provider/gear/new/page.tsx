@@ -137,7 +137,7 @@ export default function AddGearPage() {
 
   return (
     <PublicLayout>
-      <div className="min-h-screen bg-slate-950 text-slate-100 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-slate-50 text-slate-900 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto flex flex-col gap-6">
           <Link href="/dashboard/provider">
             <Button variant="ghost" size="sm" leftIcon={<ArrowLeft className="w-4 h-4" />}>
@@ -157,13 +157,13 @@ export default function AddGearPage() {
             </Alert>
           )}
 
-          <Card className="p-4 sm:p-8 border-slate-800 shadow-2xl">
-            <CardHeader className="border-b border-slate-800 pb-6 mb-6">
-              <div className="flex items-center gap-2 text-emerald-400 font-bold text-xs uppercase tracking-wider mb-1">
+          <Card className="p-4 sm:p-8 bg-white border-slate-200 shadow-xl">
+            <CardHeader className="border-b border-slate-200 pb-6 mb-6">
+              <div className="flex items-center gap-2 text-emerald-700 font-bold text-xs uppercase tracking-wider mb-1">
                 <Dumbbell className="w-4 h-4" /> Inventory Management
               </div>
-              <CardTitle className="text-2xl font-black">List New Sports Equipment</CardTitle>
-              <CardDescription>
+              <CardTitle className="text-2xl font-black text-slate-900">List New Sports Equipment</CardTitle>
+              <CardDescription className="text-slate-600">
                 Provide accurate details and an image URL to start renting out your equipment on GearUp.
               </CardDescription>
             </CardHeader>
@@ -198,15 +198,15 @@ export default function AddGearPage() {
                 {/* Category & Daily Rate */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5 w-full">
-                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-300">
-                      Category <span className="text-rose-400">*</span>
+                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-700">
+                      Category <span className="text-rose-600">*</span>
                     </label>
                     <select
                       name="categoryId"
                       value={formData.categoryId}
                       onChange={handleInputChange}
                       required
-                      className="w-full bg-slate-900 text-slate-100 text-sm rounded-xl border border-slate-800 p-2.5 outline-none focus:border-emerald-500/80 focus:ring-2 focus:ring-emerald-500/20"
+                      className="w-full bg-white text-slate-900 text-sm rounded-xl border border-slate-300 p-2.5 outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/20 shadow-sm"
                     >
                       <option value="">Select Category</option>
                       {categories.map((cat) => (
@@ -216,7 +216,7 @@ export default function AddGearPage() {
                       ))}
                     </select>
                     {errors.categoryId && (
-                      <p className="text-xs text-rose-400 font-medium">{errors.categoryId}</p>
+                      <p className="text-xs text-rose-600 font-medium">{errors.categoryId}</p>
                     )}
                   </div>
 
@@ -228,7 +228,7 @@ export default function AddGearPage() {
                     min={0}
                     placeholder="25.00"
                     required
-                    leftIcon={<DollarSign className="w-4 h-4 text-emerald-400" />}
+                    leftIcon={<DollarSign className="w-4 h-4 text-emerald-600" />}
                     value={formData.dailyRate}
                     onChange={handleInputChange}
                     error={errors.dailyRate}
@@ -237,8 +237,8 @@ export default function AddGearPage() {
 
                 {/* Description Textarea */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-semibold uppercase tracking-wider text-slate-300">
-                    Description <span className="text-rose-400">*</span>
+                  <label className="text-xs font-semibold uppercase tracking-wider text-slate-700">
+                    Description <span className="text-rose-600">*</span>
                   </label>
                   <textarea
                     name="description"
@@ -246,10 +246,10 @@ export default function AddGearPage() {
                     placeholder="Describe equipment condition, included accessories, specifications..."
                     value={formData.description}
                     onChange={handleInputChange}
-                    className="w-full bg-slate-900 text-slate-100 placeholder:text-slate-500 text-sm rounded-xl border border-slate-800 p-3.5 outline-none focus:border-emerald-500/80 focus:ring-2 focus:ring-emerald-500/20"
+                    className="w-full bg-white text-slate-900 placeholder:text-slate-400 text-sm rounded-xl border border-slate-300 p-3.5 outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/20 shadow-sm"
                   />
                   {errors.description && (
-                    <p className="text-xs text-rose-400 font-medium">{errors.description}</p>
+                    <p className="text-xs text-rose-600 font-medium">{errors.description}</p>
                   )}
                 </div>
 

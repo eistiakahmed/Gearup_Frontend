@@ -62,7 +62,7 @@ export default function UserManagementPage() {
 
   return (
     <PublicLayout>
-      <div className="min-h-screen bg-slate-950 text-slate-100 py-8 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-slate-50 text-slate-900 py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col gap-8">
           <div className="flex items-center justify-between">
             <Link href="/dashboard/admin">
@@ -73,16 +73,16 @@ export default function UserManagementPage() {
           </div>
 
           {/* Header Banner */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-slate-900/90 to-cyan-950/40 border border-slate-800/80 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 text-white shadow-xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full blur-3xl pointer-events-none" />
             <div className="flex flex-col gap-1 z-10">
-              <div className="flex items-center gap-2 text-cyan-400 font-bold text-xs uppercase tracking-wider">
+              <div className="flex items-center gap-2 text-cyan-200 font-bold text-xs uppercase tracking-wider">
                 <Users className="w-4 h-4" /> User Account Moderation
               </div>
-              <h1 className="text-2xl sm:text-4xl font-black text-slate-100 tracking-tight">
+              <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
                 Platform User Management ({users.length})
               </h1>
-              <p className="text-slate-400 text-sm max-w-xl">
+              <p className="text-emerald-100 text-sm max-w-xl">
                 Filter platform members by role, inspect contact details, and suspend or restore user account access.
               </p>
             </div>
@@ -95,11 +95,11 @@ export default function UserManagementPage() {
           )}
 
           {/* Filter Bar */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-slate-900/80 p-4 rounded-2xl border border-slate-800 backdrop-blur-xl">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
             <div className="sm:col-span-2">
               <Input
                 placeholder="Search user by name or email..."
-                leftIcon={<Search className="w-4 h-4 text-cyan-400" />}
+                leftIcon={<Search className="w-4 h-4 text-emerald-600" />}
                 value={filters.search || ''}
                 onChange={(e) => setFilters((prev) => ({ ...prev, search: e.target.value }))}
               />
@@ -114,7 +114,7 @@ export default function UserManagementPage() {
                     role: e.target.value ? (e.target.value as UserRole) : undefined,
                   }))
                 }
-                className="w-full bg-slate-900 text-slate-100 text-sm rounded-xl border border-slate-800 p-2.5 outline-none focus:border-cyan-500/80 focus:ring-2 focus:ring-cyan-500/20"
+                className="w-full bg-white text-slate-900 text-sm rounded-xl border border-slate-300 p-2.5 outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/20 shadow-sm"
               >
                 <option value="">All Roles (Customers, Providers, Admins)</option>
                 <option value={UserRole.CUSTOMER}>Customers Only</option>
@@ -125,19 +125,19 @@ export default function UserManagementPage() {
           </div>
 
           {/* Users Table */}
-          <Card className="overflow-hidden border-slate-800">
+          <Card className="overflow-hidden border-slate-200 bg-white shadow-sm">
             {isLoading ? (
-              <div className="p-12 text-center text-slate-400 animate-pulse">
+              <div className="p-12 text-center text-slate-500 animate-pulse">
                 Loading platform users...
               </div>
             ) : users.length === 0 ? (
-              <div className="p-12 text-center text-slate-400">
+              <div className="p-12 text-center text-slate-500">
                 No users found matching your active search or filter.
               </div>
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs sm:text-sm">
-                  <thead className="bg-slate-900/90 text-slate-400 uppercase tracking-wider border-b border-slate-800">
+                  <thead className="bg-slate-50 text-slate-600 uppercase tracking-wider border-b border-slate-200">
                     <tr>
                       <th className="p-4">User Details</th>
                       <th className="p-4">Role</th>
@@ -147,46 +147,46 @@ export default function UserManagementPage() {
                       <th className="p-4 text-right">Action</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800/80">
+                  <tbody className="divide-y divide-slate-100">
                     {users.map((u) => (
-                      <tr key={u.id} className="hover:bg-slate-900/50 transition-colors">
+                      <tr key={u.id} className="hover:bg-slate-50 transition-colors">
                         <td className="p-4">
                           <div className="flex flex-col">
-                            <span className="font-bold text-slate-100">{u.name}</span>
-                            <span className="text-xs text-slate-400 flex items-center gap-1">
-                              <Mail className="w-3 h-3 text-cyan-400" /> {u.email}
+                            <span className="font-bold text-slate-900">{u.name}</span>
+                            <span className="text-xs text-slate-500 flex items-center gap-1">
+                              <Mail className="w-3 h-3 text-emerald-600" /> {u.email}
                             </span>
                           </div>
                         </td>
                         <td className="p-4">
                           <Badge variant={getRoleBadgeVariant(u.role)}>{u.role}</Badge>
                         </td>
-                        <td className="p-4 text-slate-300">
+                        <td className="p-4 text-slate-700">
                           {u.phoneNumber ? (
                             <span className="flex items-center gap-1 text-xs">
-                              <Phone className="w-3 h-3 text-slate-400" /> {u.phoneNumber}
+                              <Phone className="w-3 h-3 text-slate-500" /> {u.phoneNumber}
                             </span>
                           ) : (
-                            <span className="text-slate-600 text-xs">N/A</span>
+                            <span className="text-slate-400 text-xs">N/A</span>
                           )}
                         </td>
-                        <td className="p-4 text-slate-400 text-xs">
+                        <td className="p-4 text-slate-500 text-xs">
                           {new Date(u.createdAt).toLocaleDateString()}
                         </td>
                         <td className="p-4">
                           {u.isActive !== false ? (
-                            <span className="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                            <span className="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
                               <UserCheck className="w-3.5 h-3.5" /> Active
                             </span>
                           ) : (
-                            <span className="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/40">
+                            <span className="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-rose-50 text-rose-700 border border-rose-200">
                               <UserX className="w-3.5 h-3.5" /> Suspended
                             </span>
                           )}
                         </td>
                         <td className="p-4 text-right">
                           {currentUser?.id === u.id ? (
-                            <span className="text-xs text-slate-500 italic">Cannot suspend yourself</span>
+                            <span className="text-xs text-slate-400 italic">Cannot suspend yourself</span>
                           ) : (
                             <Button
                               variant={u.isActive !== false ? 'secondary' : 'primary'}

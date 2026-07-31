@@ -22,20 +22,20 @@ export function Alert({
 }: AlertProps) {
   const variantStyles: Record<AlertVariant, { container: string; icon: React.ReactNode }> = {
     error: {
-      container: 'bg-rose-950/40 border-rose-800/60 text-rose-200',
-      icon: <AlertCircle className="w-5 h-5 text-rose-400 shrink-0" />,
+      container: 'bg-rose-50 border-rose-200 text-rose-800',
+      icon: <AlertCircle className="w-5 h-5 text-rose-600 shrink-0" />,
     },
     success: {
-      container: 'bg-emerald-950/40 border-emerald-800/60 text-emerald-200',
-      icon: <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />,
+      container: 'bg-emerald-50 border-emerald-200 text-emerald-800',
+      icon: <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />,
     },
     warning: {
-      container: 'bg-amber-950/40 border-amber-800/60 text-amber-200',
-      icon: <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0" />,
+      container: 'bg-amber-50 border-amber-200 text-amber-900',
+      icon: <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0" />,
     },
     info: {
-      container: 'bg-sky-950/40 border-sky-800/60 text-sky-200',
-      icon: <Info className="w-5 h-5 text-sky-400 shrink-0" />,
+      container: 'bg-sky-50 border-sky-200 text-sky-900',
+      icon: <Info className="w-5 h-5 text-sky-600 shrink-0" />,
     },
   };
 

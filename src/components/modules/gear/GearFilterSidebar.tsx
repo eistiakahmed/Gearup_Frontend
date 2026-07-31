@@ -20,17 +20,17 @@ export function GearFilterSidebar({
   onClearFilters,
 }: GearFilterSidebarProps) {
   return (
-    <div className="flex flex-col gap-6 p-5 rounded-2xl bg-slate-900/80 border border-slate-800/90 backdrop-blur-xl w-full">
+    <div className="flex flex-col gap-6 p-5 rounded-2xl bg-white border border-slate-200 shadow-md shadow-slate-200/50 w-full">
       {/* Header */}
-      <div className="flex items-center justify-between pb-4 border-b border-slate-800/80">
+      <div className="flex items-center justify-between pb-4 border-b border-slate-200">
         <div className="flex items-center gap-2">
-          <SlidersHorizontal className="w-4 h-4 text-emerald-400" />
-          <h3 className="text-base font-bold text-slate-100">Filter Equipment</h3>
+          <SlidersHorizontal className="w-4 h-4 text-emerald-600" />
+          <h3 className="text-base font-bold text-slate-900">Filter Equipment</h3>
         </div>
         <button
           type="button"
           onClick={onClearFilters}
-          className="text-xs text-slate-400 hover:text-rose-400 transition-colors flex items-center gap-1 font-medium"
+          className="text-xs text-slate-500 hover:text-rose-600 transition-colors flex items-center gap-1 font-medium"
         >
           <RotateCcw className="w-3.5 h-3.5" /> Reset
         </button>
@@ -47,13 +47,13 @@ export function GearFilterSidebar({
 
       {/* Category Filter */}
       <div className="flex flex-col gap-2">
-        <label className="text-xs font-semibold uppercase tracking-wider text-slate-300">
+        <label className="text-xs font-semibold uppercase tracking-wider text-slate-700">
           Category
         </label>
         <select
           value={filters.category || ''}
           onChange={(e) => onFilterChange({ category: e.target.value || undefined })}
-          className="w-full bg-slate-900 text-slate-100 text-sm rounded-xl border border-slate-800 p-2.5 outline-none focus:border-emerald-500/80 focus:ring-2 focus:ring-emerald-500/20"
+          className="w-full bg-white text-slate-900 text-sm rounded-xl border border-slate-300 p-2.5 outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/20 shadow-sm"
         >
           <option value="">All Categories</option>
           {categories.map((cat) => (
@@ -66,10 +66,10 @@ export function GearFilterSidebar({
 
       {/* Price Range Filter */}
       <div className="flex flex-col gap-2">
-        <label className="text-xs font-semibold uppercase tracking-wider text-slate-300 flex items-center justify-between">
+        <label className="text-xs font-semibold uppercase tracking-wider text-slate-700 flex items-center justify-between">
           <span>Max Daily Rate ($)</span>
           {filters.maxPrice && (
-            <span className="text-emerald-400 font-bold">${filters.maxPrice}</span>
+            <span className="text-emerald-600 font-bold">${filters.maxPrice}</span>
           )}
         </label>
         <div className="flex items-center gap-2">
@@ -84,7 +84,7 @@ export function GearFilterSidebar({
               })
             }
           />
-          <span className="text-slate-500 font-bold">-</span>
+          <span className="text-slate-400 font-bold">-</span>
           <Input
             type="number"
             placeholder="Max $"
@@ -101,14 +101,14 @@ export function GearFilterSidebar({
 
       {/* Sort By Filter */}
       <div className="flex flex-col gap-2">
-        <label className="text-xs font-semibold uppercase tracking-wider text-slate-300">
+        <label className="text-xs font-semibold uppercase tracking-wider text-slate-700">
           Sort By
         </label>
         <div className="grid grid-cols-2 gap-2">
           <select
             value={filters.sortBy || 'createdAt'}
             onChange={(e) => onFilterChange({ sortBy: e.target.value as any })}
-            className="w-full bg-slate-900 text-slate-100 text-xs rounded-xl border border-slate-800 p-2.5 outline-none focus:border-emerald-500/80"
+            className="w-full bg-white text-slate-900 text-xs rounded-xl border border-slate-300 p-2.5 outline-none focus:border-emerald-600 shadow-sm"
           >
             <option value="createdAt">Date Added</option>
             <option value="price">Daily Rate</option>
@@ -118,7 +118,7 @@ export function GearFilterSidebar({
           <select
             value={filters.sortOrder || 'desc'}
             onChange={(e) => onFilterChange({ sortOrder: e.target.value as any })}
-            className="w-full bg-slate-900 text-slate-100 text-xs rounded-xl border border-slate-800 p-2.5 outline-none focus:border-emerald-500/80"
+            className="w-full bg-white text-slate-900 text-xs rounded-xl border border-slate-300 p-2.5 outline-none focus:border-emerald-600 shadow-sm"
           >
             <option value="desc">High to Low</option>
             <option value="asc">Low to High</option>

@@ -9,8 +9,8 @@ export function Card({ className, glassmorphism = true, children, ...props }: Ca
   return (
     <div
       className={cn(
-        'rounded-2xl border border-slate-800/80 bg-slate-900/80 text-slate-100 shadow-xl overflow-hidden',
-        glassmorphism && 'backdrop-blur-xl bg-slate-900/70 border-slate-800/90 shadow-2xl shadow-black/40',
+        'rounded-2xl border border-slate-200/80 bg-white text-slate-900 shadow-md shadow-slate-200/50 overflow-hidden',
+        glassmorphism && 'backdrop-blur-xl bg-white/90 border-slate-200 shadow-lg shadow-slate-200/60',
         className
       )}
       {...props}
@@ -30,7 +30,7 @@ export function CardHeader({ className, children, ...props }: React.HTMLAttribut
 
 export function CardTitle({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
   return (
-    <h3 className={cn('text-xl font-bold tracking-tight text-slate-100', className)} {...props}>
+    <h3 className={cn('text-xl font-bold tracking-tight text-slate-900', className)} {...props}>
       {children}
     </h3>
   );
@@ -38,7 +38,7 @@ export function CardTitle({ className, children, ...props }: React.HTMLAttribute
 
 export function CardDescription({ className, children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
   return (
-    <p className={cn('text-sm text-slate-400 leading-relaxed', className)} {...props}>
+    <p className={cn('text-sm text-slate-500 leading-relaxed', className)} {...props}>
       {children}
     </p>
   );

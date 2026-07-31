@@ -197,38 +197,38 @@ export function RegisterForm() {
         />
 
         {/* Password Strength Checklist */}
-        <div className="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 text-xs flex flex-col gap-2 mt-1">
-          <span className="font-semibold text-slate-300">Password must contain:</span>
-          <div className="grid grid-cols-2 gap-2 text-slate-400">
+        <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs flex flex-col gap-2 mt-1">
+          <span className="font-semibold text-slate-700">Password must contain:</span>
+          <div className="grid grid-cols-2 gap-2 text-slate-600">
             <span className="flex items-center gap-1.5">
               {passwordCriteria.length ? (
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
               ) : (
-                <XCircle className="w-3.5 h-3.5 text-slate-600 shrink-0" />
+                <XCircle className="w-3.5 h-3.5 text-slate-300 shrink-0" />
               )}
               At least 8 characters
             </span>
             <span className="flex items-center gap-1.5">
               {passwordCriteria.uppercase ? (
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
               ) : (
-                <XCircle className="w-3.5 h-3.5 text-slate-600 shrink-0" />
+                <XCircle className="w-3.5 h-3.5 text-slate-300 shrink-0" />
               )}
               One uppercase letter
             </span>
             <span className="flex items-center gap-1.5">
               {passwordCriteria.lowercase ? (
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
               ) : (
-                <XCircle className="w-3.5 h-3.5 text-slate-600 shrink-0" />
+                <XCircle className="w-3.5 h-3.5 text-slate-300 shrink-0" />
               )}
               One lowercase letter
             </span>
             <span className="flex items-center gap-1.5">
               {passwordCriteria.number ? (
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
               ) : (
-                <XCircle className="w-3.5 h-3.5 text-slate-600 shrink-0" />
+                <XCircle className="w-3.5 h-3.5 text-slate-300 shrink-0" />
               )}
               One number
             </span>
@@ -272,11 +272,11 @@ export function RegisterForm() {
       </Button>
 
       {/* Already registered link */}
-      <div className="text-center text-sm text-slate-400 mt-1">
+      <div className="text-center text-sm text-slate-600 mt-1">
         Already have an account?{' '}
         <Link
           href="/login"
-          className="font-semibold text-emerald-400 hover:text-emerald-300 transition-colors underline underline-offset-4"
+          className="font-semibold text-emerald-600 hover:text-emerald-700 transition-colors underline underline-offset-4"
         >
           Sign in here
         </Link>

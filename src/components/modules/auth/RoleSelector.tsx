@@ -45,8 +45,8 @@ export interface RoleSelectorProps {
 export function RoleSelector({ selectedRole, onSelectRole }: RoleSelectorProps) {
   return (
     <div className="flex flex-col gap-2.5 w-full">
-      <label className="text-xs font-semibold uppercase tracking-wider text-slate-300">
-        Account Type <span className="text-rose-400">*</span>
+      <label className="text-xs font-semibold uppercase tracking-wider text-slate-700">
+        Account Type <span className="text-rose-500">*</span>
       </label>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {ROLE_OPTIONS.map((opt) => {
@@ -57,17 +57,17 @@ export function RoleSelector({ selectedRole, onSelectRole }: RoleSelectorProps) 
               type="button"
               onClick={() => onSelectRole(opt.role)}
               className={cn(
-                'relative flex flex-col items-start p-4 rounded-xl border text-left transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/40',
+                'relative flex flex-col items-start p-4 rounded-xl border text-left transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 shadow-sm',
                 isSelected
-                  ? 'bg-emerald-500/10 border-emerald-500 text-slate-100 shadow-md shadow-emerald-500/10'
-                  : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                  ? 'bg-emerald-50 border-emerald-600 text-slate-900'
+                  : 'bg-slate-50 border-slate-200 text-slate-600 hover:border-slate-300 hover:text-slate-900'
               )}
             >
               <div className="flex items-center justify-between w-full mb-2">
                 <div
                   className={cn(
                     'p-2 rounded-lg transition-colors',
-                    isSelected ? 'bg-emerald-500 text-slate-950' : 'bg-slate-800 text-slate-400'
+                    isSelected ? 'bg-emerald-600 text-white' : 'bg-slate-200 text-slate-600'
                   )}
                 >
                   {opt.icon}
@@ -76,15 +76,15 @@ export function RoleSelector({ selectedRole, onSelectRole }: RoleSelectorProps) 
                   className={cn(
                     'text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border',
                     isSelected
-                      ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
-                      : 'bg-slate-800/80 text-slate-500 border-slate-700'
+                      ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                      : 'bg-slate-200/60 text-slate-600 border-slate-300'
                   )}
                 >
                   {opt.badge}
                 </span>
               </div>
-              <h4 className="text-sm font-semibold text-slate-100 mb-1">{opt.title}</h4>
-              <p className="text-xs text-slate-400 leading-relaxed">{opt.description}</p>
+              <h4 className="text-sm font-semibold text-slate-900 mb-1">{opt.title}</h4>
+              <p className="text-xs text-slate-600 leading-relaxed">{opt.description}</p>
             </button>
           );
         })}

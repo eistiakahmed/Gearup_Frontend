@@ -21,18 +21,18 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
 
 export function Badge({ variant = 'default', className, children, ...props }: BadgeProps) {
   const variantStyles: Record<BadgeVariant, string> = {
-    default: 'bg-slate-800 text-slate-300 border-slate-700',
-    primary: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
-    secondary: 'bg-slate-700/50 text-slate-200 border-slate-600',
-    customer: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30',
-    provider: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
-    admin: 'bg-purple-500/10 text-purple-400 border-purple-500/30',
-    placed: 'bg-amber-500/15 text-amber-400 border-amber-500/40',
-    confirmed: 'bg-blue-500/15 text-blue-400 border-blue-500/40',
-    paid: 'bg-purple-500/15 text-purple-400 border-purple-500/40',
-    picked_up: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/40',
-    returned: 'bg-slate-500/15 text-slate-400 border-slate-500/40',
-    cancelled: 'bg-rose-500/15 text-rose-400 border-rose-500/40',
+    default: 'bg-slate-100 text-slate-700 border-slate-200',
+    primary: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+    secondary: 'bg-slate-200/60 text-slate-800 border-slate-300',
+    customer: 'bg-cyan-50 text-cyan-700 border-cyan-200',
+    provider: 'bg-amber-50 text-amber-700 border-amber-200',
+    admin: 'bg-purple-50 text-purple-700 border-purple-200',
+    placed: 'bg-amber-50 text-amber-800 border-amber-200',
+    confirmed: 'bg-blue-50 text-blue-700 border-blue-200',
+    paid: 'bg-purple-50 text-purple-700 border-purple-200',
+    picked_up: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+    returned: 'bg-slate-100 text-slate-600 border-slate-200',
+    cancelled: 'bg-rose-50 text-rose-700 border-rose-200',
   };
 
   return (

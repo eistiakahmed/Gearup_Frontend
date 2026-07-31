@@ -159,11 +159,11 @@ export function LoginForm() {
         Sign In to GearUp
       </Button>
 
-      <div className="text-center text-sm text-slate-400 mt-2">
+      <div className="text-center text-sm text-slate-600 mt-2">
         Don&apos;t have an account yet?{' '}
         <Link
           href="/register"
-          className="font-semibold text-emerald-400 hover:text-emerald-300 transition-colors underline underline-offset-4"
+          className="font-semibold text-emerald-600 hover:text-emerald-700 transition-colors underline underline-offset-4"
         >
           Create an account here
         </Link>

@@ -13,23 +13,23 @@ export const metadata = {
 export default function NotFound() {
   return (
     <PublicLayout>
-      <div className="min-h-[calc(100vh-4rem)] bg-slate-950 text-slate-100 flex items-center justify-center p-6 relative overflow-hidden">
+      <div className="min-h-[calc(100vh-4rem)] bg-slate-50 text-slate-900 flex items-center justify-center p-6 relative overflow-hidden">
         {/* Glow background */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-emerald-500/10 blur-[150px] pointer-events-none" />
 
         <div className="w-full max-w-lg z-10">
-          <Card className="p-8 text-center border-slate-800 shadow-2xl">
+          <Card className="p-8 text-center bg-white border-slate-200 shadow-xl">
             <CardContent className="flex flex-col items-center gap-6 p-0">
-              <div className="p-4 rounded-3xl bg-slate-900 text-slate-400 border border-slate-800">
-                <SearchX className="w-12 h-12 text-emerald-400" />
+              <div className="p-4 rounded-3xl bg-slate-100 text-slate-600 border border-slate-200">
+                <SearchX className="w-12 h-12 text-emerald-600" />
               </div>
 
               <div>
-                <span className="text-4xl font-black text-emerald-400 block mb-1">404</span>
-                <h1 className="text-2xl font-black text-slate-100 tracking-tight">
+                <span className="text-4xl font-black text-emerald-700 block mb-1">404</span>
+                <h1 className="text-2xl font-black text-slate-900 tracking-tight">
                   Page Not Found
                 </h1>
-                <p className="text-slate-400 text-sm mt-2 leading-relaxed">
+                <p className="text-slate-600 text-sm mt-2 leading-relaxed">
                   We couldn&apos;t find the page you were looking for. It may have been moved or no longer exists.
                 </p>
               </div>
