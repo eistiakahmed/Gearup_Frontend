@@ -41,6 +41,10 @@ export function useAuth() {
     '/auth/register',
     async (_url: string, { arg }: { arg: RegisterRequestPayload }) => {
       const response = await registerUser(arg);
+      const token = (response.data as any)?.token || (response as any)?.token;
+      if (token && typeof window !== 'undefined') {
+        localStorage.setItem('token', token);
+      }
       // Revalidate user state after registration
       await mutateUser();
       return response;
@@ -52,6 +56,10 @@ export function useAuth() {
     '/auth/login',
     async (_url: string, { arg }: { arg: LoginRequestPayload }) => {
       const response = await loginUser(arg);
+      const token = (response.data as any)?.token || (response as any)?.token;
+      if (token && typeof window !== 'undefined') {
+        localStorage.setItem('token', token);
+      }
       await mutateUser();
       return response;
     }
@@ -59,6 +67,10 @@ export function useAuth() {
 
   // Logout action — clears state instantly then calls API in background
   const logout = async () => {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('token');
+      localStorage.removeItem('accessToken');
+    }
     // 1. Immediately clear user state → UI updates instantly
     await mutateUser(undefined, false);
     // 2. Redirect to login right away (no waiting for API)

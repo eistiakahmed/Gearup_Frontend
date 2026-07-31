@@ -29,6 +29,14 @@ export async function apiClient<T = any>(
     ...(options.headers as Record<string, string>),
   };
 
+  // Bearer Token fallback for cross-site cookie restrictions
+  if (typeof window !== 'undefined') {
+    const savedToken = localStorage.getItem('token') || localStorage.getItem('accessToken');
+    if (savedToken && !headers['Authorization']) {
+      headers['Authorization'] = `Bearer ${savedToken}`;
+    }
+  }
+
   const config: RequestInit = {
     ...options,
     headers,
