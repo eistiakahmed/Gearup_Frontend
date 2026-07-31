@@ -55,7 +55,7 @@ export function Navbar() {
             <Dumbbell className="w-5 h-5" />
           </div>
           <span className="text-xl font-black tracking-tight text-slate-900 flex items-center gap-1">
-            GearUp <span className="text-emerald-600 font-bold text-sm">🏋️</span>
+            GearUp 
           </span>
         </Link>
 
@@ -169,12 +169,12 @@ export function Navbar() {
             </div>
           ) : (
             <div className="flex items-center gap-2">
-              <Link href="/auth/login">
+              <Link href="/login">
                 <Button variant="ghost" size="sm">
                   Sign In
                 </Button>
               </Link>
-              <Link href="/auth/register">
+              <Link href="/register">
                 <Button variant="primary" size="sm">
                   Get Started
                 </Button>

@@ -14,7 +14,7 @@ export function Footer() {
                 <Dumbbell className="w-5 h-5" />
               </div>
               <span className="text-xl font-black tracking-tight text-slate-900 flex items-center gap-1">
-                GearUp <span className="text-emerald-600 font-bold text-sm">🏋️</span>
+                GearUp
               </span>
             </Link>
             <p className="text-slate-600 leading-relaxed max-w-sm text-xs sm:text-sm">
