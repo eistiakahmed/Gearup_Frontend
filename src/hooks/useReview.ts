@@ -1,5 +1,4 @@
-'use client';
-
+import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { createReview } from '@/services/review.service';
 import { CreateReviewPayload } from '@/types/review';
@@ -19,5 +18,21 @@ export function useCreateReview() {
   return {
     submitReview: submitReviewTrigger,
     isSubmittingReview,
+  };
+}
+
+/**
+ * Hook for fetching recent customer reviews for homepage
+ */
+export function useRecentReviews(limit: number = 6) {
+  const { data, error, isLoading, mutate } = useSWR(`/reviews/recent?limit=${limit}`);
+
+  const reviews = Array.isArray(data?.data) ? data.data : [];
+
+  return {
+    reviews,
+    isLoading,
+    error,
+    mutate,
   };
 }
