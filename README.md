@@ -1,12 +1,15 @@
 # GearUp - Sports & Outdoor Equipment Rental Platform
 
-![Next.js 16.2.12](https://img.shields.io/badge/Next.js-16.0-black?style=for-the-badge&logo=next.js)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-gearup--shop.vercel.app-000000?style=for-the-badge&logo=vercel)](https://gearup-shop.vercel.app)
+![Next.js 16](https://img.shields.io/badge/Next.js-16.0-black?style=for-the-badge&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
 ![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4.0-06B6D4?style=for-the-badge&logo=tailwindcss)
 ![SWR](https://img.shields.io/badge/SWR-2.0-black?style=for-the-badge)
 ![Stripe API](https://img.shields.io/badge/Stripe-Checkout-6772E5?style=for-the-badge&logo=stripe)
 
 **GearUp** is a modern, high-performance, full-featured web application designed for renting sports, gym, and outdoor adventure equipment. Built with **Next.js 16 App Router**, **TypeScript**, **Tailwind CSS v4**, and **SWR**, GearUp seamlessly connects sports enthusiasts with local equipment providers and provides real-time order lifecycle tracking, Stripe payment checkout, and multi-role administrative moderation.
+
+**🌐 Live Application URL**: [https://gearup-shop.vercel.app](https://gearup-shop.vercel.app)
 
 ---
 
