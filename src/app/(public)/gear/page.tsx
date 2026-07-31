@@ -7,6 +7,7 @@ import { GearQueryFilters } from '@/types/gear';
 import { GearFilterSidebar } from '@/components/modules/gear/GearFilterSidebar';
 import { GearGrid } from '@/components/modules/gear/GearGrid';
 import { GearSkeleton } from '@/components/modules/gear/GearSkeleton';
+import { Pagination } from '@/components/ui/Pagination';
 import { Alert } from '@/components/ui/Alert';
 import { Compass, Filter, SlidersHorizontal } from 'lucide-react';
 
@@ -25,6 +26,11 @@ export default function BrowseGearPage() {
 
   const handleFilterChange = (updated: Partial<GearQueryFilters>) => {
     setFilters((prev) => ({ ...prev, ...updated, page: 1 }));
+  };
+
+  const handlePageChange = (newPage: number) => {
+    setFilters((prev) => ({ ...prev, page: newPage }));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleClearFilters = () => {
@@ -117,7 +123,16 @@ export default function BrowseGearPage() {
               {isLoading ? (
                 <GearSkeleton count={6} />
               ) : (
-                <GearGrid items={items} onResetFilters={handleClearFilters} />
+                <>
+                  <GearGrid items={items} onResetFilters={handleClearFilters} />
+                  <Pagination
+                    currentPage={filters.page || 1}
+                    totalPages={meta.totalPages || Math.ceil((meta.total || items.length) / (filters.limit || 12))}
+                    totalItems={meta.total || items.length}
+                    itemsPerPage={filters.limit || 12}
+                    onPageChange={handlePageChange}
+                  />
+                </>
               )}
             </main>
           </div>
