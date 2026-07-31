@@ -162,7 +162,7 @@ npm run start
 For evaluator testing and moderation review, use the pre-configured administrator credentials:
 
 - **Admin Email**: `admin@gearup.com`
-- **Admin Password**: `AdminPassword123!`
+- **Admin Password**: `Password123!`
 
 ---
 
