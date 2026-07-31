@@ -51,15 +51,21 @@ export function proxy(request: NextRequest) {
     return '/dashboard/customer';
   };
 
-  // 1. Guard Auth Pages (/auth/login, /auth/register) for already logged-in users
-  if (isAuthenticated && (pathname.startsWith('/auth/login') || pathname.startsWith('/auth/register'))) {
+  const isAuthPage =
+    pathname === '/login' ||
+    pathname === '/register' ||
+    pathname.startsWith('/auth/login') ||
+    pathname.startsWith('/auth/register');
+
+  // 1. Guard Auth Pages (/login, /register, /auth/login, /auth/register) for already logged-in users
+  if (isAuthenticated && isAuthPage) {
     const targetDashboard = getRoleDashboard(userRole);
     return NextResponse.redirect(new URL(targetDashboard, request.url));
   }
 
   // 2. Guard Protected Dashboard Routes (/dashboard/*) for unauthenticated users
   if (!isAuthenticated && pathname.startsWith('/dashboard')) {
-    const loginUrl = new URL('/auth/login', request.url);
+    const loginUrl = new URL('/login', request.url);
     loginUrl.searchParams.set('redirect', pathname);
     return NextResponse.redirect(loginUrl);
   }
@@ -90,6 +96,8 @@ export function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     '/dashboard/:path*',
+    '/login',
+    '/register',
     '/auth/login',
     '/auth/register',
   ],

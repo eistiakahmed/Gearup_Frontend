@@ -173,7 +173,8 @@ export function DateRangePicker({ gear, onSubmitRental, isSubmitting = false }: 
         </div>
         <div className="border-t border-slate-800 pt-2.5 flex items-center justify-between text-base font-bold">
           <span className="text-slate-100">Total Rental Cost</span>
-          <span className="text-emerald-400 font-black text-xl">${totalPrice.toFixed(2)}</span>
+          <span className="text-emerald-400 font-black text-xl">${Number(totalPrice || 0).toFixed(2)}</span>
+
         </div>
       </div>
 

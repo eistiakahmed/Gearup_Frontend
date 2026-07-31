@@ -108,8 +108,9 @@ export default function AdminDashboardPage() {
                 </div>
               </div>
               <p className="text-3xl font-black text-slate-100 mt-2">
-                {isLoading ? '...' : `$${totalRevenue.toFixed(2)}`}
+                {isLoading ? '...' : `$${Number(totalRevenue || 0).toFixed(2)}`}
               </p>
+
             </Card>
           </div>
 

@@ -95,7 +95,8 @@ export default function AdminGearModerationPage() {
                           <td className="p-4">
                             <Badge variant="primary">{item.category?.name || 'General'}</Badge>
                           </td>
-                          <td className="p-4 font-bold text-emerald-400">${item.dailyRate.toFixed(2)} / d</td>
+                          <td className="p-4 font-bold text-emerald-400">${Number(item.dailyRate || 0).toFixed(2)} / d</td>
+
                           <td className="p-4 text-slate-200 font-semibold">{item.stockQuantity}</td>
                           <td className="p-4">
                             {item.isAvailable ? (

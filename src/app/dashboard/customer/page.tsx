@@ -46,7 +46,8 @@ export default function CustomerDashboardPage() {
   const completedRentals = orders.filter((o) => o.status === RentalOrderStatus.RETURNED).length;
   const totalSpent = orders
     .filter((o) => o.status !== RentalOrderStatus.CANCELLED)
-    .reduce((acc, o) => acc + (o.totalAmount || 0), 0);
+    .reduce((acc, o) => acc + (Number(o.totalAmount) || 0), 0);
+
 
   const getOrderStatusBadgeVariant = (status: RentalOrderStatus) => {
     switch (status) {
@@ -153,7 +154,7 @@ export default function CustomerDashboardPage() {
                   <DollarSign className="w-5 h-5" />
                 </div>
               </div>
-              <p className="text-3xl font-black text-slate-100 mt-2">${totalSpent.toFixed(2)}</p>
+              <p className="text-3xl font-black text-slate-100 mt-2">${Number(totalSpent || 0).toFixed(2)}</p>
             </Card>
           </div>
 
@@ -208,7 +209,7 @@ export default function CustomerDashboardPage() {
                               {startDateStr} - {endDateStr} ({order.totalDays || 1}d)
                             </td>
                             <td className="p-4 font-bold text-emerald-400">
-                              ${order.totalAmount.toFixed(2)}
+                              ${Number(order.totalAmount || 0).toFixed(2)}
                             </td>
                             <td className="p-4">
                               <Badge variant={getOrderStatusBadgeVariant(order.status)}>
@@ -283,7 +284,8 @@ export default function CustomerDashboardPage() {
                         <tr key={pm.id} className="hover:bg-slate-900/50 transition-colors">
                           <td className="p-4 font-mono text-slate-400 text-xs">{pm.id.slice(0, 8)}...</td>
                           <td className="p-4 font-mono text-slate-300 text-xs">{pm.orderId.slice(0, 8)}...</td>
-                          <td className="p-4 font-bold text-slate-100">${pm.amount.toFixed(2)}</td>
+                          <td className="p-4 font-bold text-slate-100">${Number(pm.amount || 0).toFixed(2)}</td>
+
                           <td className="p-4 font-semibold text-emerald-400">{pm.method}</td>
                           <td className="p-4">
                             <Badge

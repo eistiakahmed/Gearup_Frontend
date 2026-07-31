@@ -38,7 +38,8 @@ export default function ProviderDashboardPage() {
   ).length;
   const totalRevenue = orders
     .filter((o) => o.status !== 'CANCELLED')
-    .reduce((acc, o) => acc + (o.totalAmount || 0), 0);
+    .reduce((acc, o) => acc + (Number(o.totalAmount) || 0), 0);
+
 
   const handleToggleStatus = async (id: string, currentAvailable: boolean) => {
     setActionError(null);
@@ -151,7 +152,7 @@ export default function ProviderDashboardPage() {
                   <DollarSign className="w-5 h-5" />
                 </div>
               </div>
-              <p className="text-3xl font-black text-slate-100 mt-2">${totalRevenue.toFixed(2)}</p>
+              <p className="text-3xl font-black text-slate-100 mt-2">${Number(totalRevenue || 0).toFixed(2)}</p>
             </Card>
           </div>
 
@@ -222,8 +223,9 @@ export default function ProviderDashboardPage() {
                               <Badge variant="primary">{item.category?.name || 'General'}</Badge>
                             </td>
                             <td className="p-4 font-bold text-emerald-400">
-                              ${item.dailyRate.toFixed(2)} / d
+                              ${Number(item.dailyRate || 0).toFixed(2)} / d
                             </td>
+
                             <td className="p-4 text-slate-200 font-semibold">{item.stockQuantity}</td>
                             <td className="p-4">
                               <button

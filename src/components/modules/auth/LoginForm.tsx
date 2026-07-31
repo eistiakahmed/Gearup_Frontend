@@ -162,7 +162,7 @@ export function LoginForm() {
       <div className="text-center text-sm text-slate-400 mt-2">
         Don&apos;t have an account yet?{' '}
         <Link
-          href="/auth/register"
+          href="/register"
           className="font-semibold text-emerald-400 hover:text-emerald-300 transition-colors underline underline-offset-4"
         >
           Create an account here

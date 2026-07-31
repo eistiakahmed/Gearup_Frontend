@@ -115,8 +115,9 @@ export default function AdminOrderModerationPage() {
                             {startDateStr} - {endDateStr} ({order.totalDays || 1}d)
                           </td>
                           <td className="p-4 font-bold text-emerald-400">
-                            ${order.totalAmount.toFixed(2)}
+                            ${Number(order.totalAmount || 0).toFixed(2)}
                           </td>
+
                           <td className="p-4">
                             <Badge variant={getOrderStatusBadgeVariant(order.status)}>
                               {order.status}
