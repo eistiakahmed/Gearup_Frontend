@@ -217,7 +217,8 @@ export default function CustomerDashboardPage() {
                               </Badge>
                             </td>
                             <td className="p-4 text-right">
-                              {order.status === RentalOrderStatus.CONFIRMED && (
+                              {(order.status === RentalOrderStatus.PLACED ||
+                                order.status === RentalOrderStatus.CONFIRMED) && (
                                 <Link href={`/dashboard/customer/orders/${order.id}/pay`}>
                                   <Button variant="primary" size="sm" rightIcon={<CreditCard className="w-3.5 h-3.5" />}>
                                     Pay Now
@@ -236,11 +237,13 @@ export default function CustomerDashboardPage() {
                                 </Button>
                               )}
 
-                              {order.status !== RentalOrderStatus.CONFIRMED &&
+                              {order.status !== RentalOrderStatus.PLACED &&
+                                order.status !== RentalOrderStatus.CONFIRMED &&
                                 order.status !== RentalOrderStatus.RETURNED && (
                                   <span className="text-xs text-slate-500 font-mono">-</span>
                                 )}
                             </td>
+
                           </tr>
                         );
                       })}
